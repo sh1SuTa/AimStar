@@ -980,7 +980,7 @@ void Cheat()
 	UpdateSteamPath();
 #ifdef USERMODE
 
-	cout << XorStr("[WARN] You are using usermode version, you may have higher possibility to get banned as VAC detected.") << endl;
+	cout << XorStr("[WARN] 你正在使用Usermode版本，该版本可能被VAC检测。") << endl;
 #else
 	createDriver();
 	kdmap(1, nullptr);
@@ -994,34 +994,33 @@ void Cheat()
  / ___ |/ / / / / / /__/ / /_/ /_/ / /    
 /_/  |_/_/_/ /_/ /_/____/\__/\__,_/_/    
 	)" << endl;
-	printf(XorStr("Build-%s-%s\n"), __DATE__, __TIME__);
+	printf(XorStr("%s-%s\n"), __DATE__, __TIME__);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 
 	auto ProcessStatus = ProcessMgr.Attach(XorStr("cs2.exe"));
 
 	char documentsPath[MAX_PATH];
 	if (SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL, 0, documentsPath) != S_OK) {
-		cerr << XorStr("[Info] Error: Failed to get the Documents folder path.") << endl;
+		cerr << XorStr("【错误】获取文档目录失败.") << endl;
 		Exit();
 	}
 	MenuConfig::path = documentsPath;
 	MenuConfig::path += XorStr("\\AimStar");
 	MenuConfig::HWID = Init::Client::G();
-	printf("%s\n",MenuConfig::HWID.substr(MenuConfig::HWID.length() - 16).c_str());
 	if (checkHWIDFromYAML(MenuConfig::HWID.substr(MenuConfig::HWID.length() - 16).c_str()))
 		MenuConfig::DRM = true;
 	switch (ProcessStatus) {
 	case 1:
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << XorStr("[ERROR] Please launch the game first!") << endl;
+		cout << XorStr("\u3010\u9519\u8bef\u3011\u8bf7\u5148\u8fd0\u884c\u6e38\u620f\uff01") << endl;
 		Exit();
 	case 2:
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << XorStr("[ERROR] Failed to hook process, please run the cheat as Administrator (Right click AimStar > Run as Adminstrator).") << endl;
+		cout << XorStr("\u3010\u9519\u8bef\u3011\u6743\u9650\u4e0d\u8db3\uff0c\u8bf7\u4f7f\u7528\u7ba1\u7406\u5458\u8fd0\u884c.") << endl;
 		Exit();
 	case 3:
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << XorStr("[ERROR] Failed to get module address.") << endl;
+		cout << XorStr("\u3010\u9519\u8bef\u3011\u83b7\u53d6\u6a21\u5757\u5730\u5740\u5931\u8d25.") << endl;
 		Exit();
 	default:
 		break;
@@ -1030,14 +1029,14 @@ void Cheat()
 	if (!Offset::UpdateOffsets())
 	{
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << XorStr("[ERROR] Failed to update offsets.") << endl;
+		cout << XorStr("\u3010\u9519\u8bef\u3011\u57fa\u5740\u66f4\u65b0\u5931\u8d25.") << endl;
 		Exit();
 	}
 
 	if (!gGame.InitAddress())
 	{
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << XorStr("[ERROR] Failed to call InitAddress(). If you are using kernel mode, please check whether the driver is mapped") << endl;
+		cout << XorStr("\u3010\u9519\u8bef\u3011\u65e0\u6cd5\u521d\u59cb\u5316\u5730\u5740. \u5982\u679c\u4f60\u6b63\u5728\u4f7f\u7528\u5185\u6838\u7248\uff0c\u8bf7\u786e\u4fdd\u9a71\u52a8\u5df2\u7ecf\u6b63\u786e\u52a0\u8f7d.") << endl;
 		Exit();
 	}
 
@@ -1071,26 +1070,10 @@ void Cheat()
 	UpdateLang();
 	cout << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
-	cout << XorStr("Cheat running successfully!") << endl;
-	cout << XorStr("Press [INS] or [DEL] to show or hide Menu.") << endl;
-	cout << XorStr("Press [HOME] to show or hide Console.") << endl;
+	cout << XorStr("辅助加载完毕！") << endl;
+	cout << XorStr("按下[INS]或[DEL]键显隐菜单.") << endl;
+	cout << XorStr("按下[HOME]键隐藏本窗口.") << endl;
 	cout << XorStr("Have fun...") << endl << endl;
-	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_RED);
-	cout << XorStr("=======[ Offset List ]=======") << endl;
-	cout << setw(23) << left << XorStr("EntityList:") << setiosflags(ios::uppercase) << hex << Offset::EntityList << endl;
-	cout << setw(23) << left << XorStr("Matrix:") << setiosflags(ios::uppercase) << hex << Offset::Matrix << endl;
-	cout << setw(23) << left << XorStr("LocalPlayerController:") << setiosflags(ios::uppercase) << hex << Offset::LocalPlayerController << endl;
-	cout << setw(23) << left << XorStr("ViewAngles:") << setiosflags(ios::uppercase) << hex << Offset::ViewAngle << endl;
-	cout << setw(23) << left << XorStr("LocalPlayerPawn:") << setiosflags(ios::uppercase) << hex << Offset::LocalPlayerPawn << endl;
-	cout << setw(23) << left << XorStr("PlantedC4:") << setiosflags(ios::uppercase) << hex << Offset::PlantedC4 << endl;
-	cout << setw(23) << left << XorStr("ForceJump:") << setiosflags(ios::uppercase) << hex << Offset::ForceJump << endl;
-	cout << setw(23) << left << XorStr("Sensitivity:") << setiosflags(ios::uppercase) << hex << Offset::Sensitivity << endl;
-	cout << setw(23) << left << XorStr("GlobalVars:") << setiosflags(ios::uppercase) << hex << Offset::GlobalVars << endl;
-	// cout << setw(23) << left << XorStr("ForceCrouch:") << setiosflags(ios::uppercase) << hex << Offset::ForceCrouch << endl;
-	// cout << setw(23) << left << XorStr("ForceForward:") << setiosflags(ios::uppercase) << hex << Offset::ForceForward << endl;
-	// cout << setw(23) << left << XorStr("ForceLeft:") << setiosflags(ios::uppercase) << hex << Offset::ForceLeft << endl;
-	// cout << setw(23) << left << XorStr("ForceRight:") << setiosflags(ios::uppercase) << hex << Offset::ForceRight << endl;
-	// cout << setw(23) << left << XorStr("TestPointer:") << setiosflags(ios::uppercase) << hex << Offset::Pointer << endl;
 	cout << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 
@@ -1114,132 +1097,7 @@ void Cheat()
 
 int main(void)
 {
-	MenuConfig::ConsoleHandle = GetConsoleWindow();
-	/*
-	const char* tempPath = getenv("TMP");
-	if (tempPath != nullptr)
-	{
-
-		fileName = string(tempPath) + XorStr("\\Aimstar");
-		otp = Init::Verify::isVerified(fileName);
-	}
-	*/
-	//#ifdef _DEBUG
-
-	//#endif
-	otp = GlobalFindAtomA(XorStr("https://aimstar.tkm.icu"));
-
-	if (otp)
-	{
-		Cheat();
-		return 0;
-	}
-	else
-	{
-		// OTP Window
-		WNDCLASS wc = { 0 };
-		const wchar_t CLASS_NAME[] = L"OTPInputClass";
-
-		wc.lpfnWndProc = WndProc;
-		wc.hInstance = GetModuleHandle(NULL);
-		wc.lpszClassName = CLASS_NAME;
-
-		RegisterClass(&wc);
-
-		HWND hwnd = CreateWindowEx(
-			0, CLASS_NAME, L"Verify", WS_OVERLAPPEDWINDOW,
-			CW_USEDEFAULT, CW_USEDEFAULT, 400, 200,
-			NULL, NULL, GetModuleHandle(NULL), NULL
-		);
-
-		if (hwnd == NULL) {
-			return 0;
-		}
-
-		ShowWindow(hwnd, SW_SHOW);
-		MSG msg;
-		while (GetMessage(&msg, NULL, 0, 0)) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-	}
-
-	return 0;
-}
-
-LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
-	//bool showed = false;
-	if (!otp /*&& !showed*/)
-	{
-		cout << XorStr("Please enter your OTP code! Get the OTP code from: https://aimstar.tkm.icu") << endl;
-		//showed = true;
-	}
-	static int RetTimes = 0;
-
-	switch (message) {
-        case WM_CREATE:
-	{
-		CreateWindowW(L"STATIC", L"Please enter your OTP code:",
-			WS_VISIBLE | WS_CHILD | SS_CENTER,
-			50, 20, 300, 20, hwnd, NULL, NULL, NULL);
-		CreateWindowW(L"EDIT", L"",
-			WS_VISIBLE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
-			100, 50, 200, 20, hwnd, (HMENU)2, NULL, NULL);
-		CreateWindowW(L"BUTTON", L"Verify",
-			WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-			215, 90, 70, 30, hwnd, (HMENU)1, NULL, NULL);
-		CreateWindowW(L"BUTTON", L"Get OTP",
-			WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-			115, 90, 70, 30, hwnd, (HMENU)3, NULL, NULL);
-		break;
-	}
-	case WM_COMMAND:
-	{
-		if (LOWORD(wParam) == 1) {
-			wchar_t buffer[10];
-			GetWindowTextW(GetDlgItem(hwnd, 2), buffer, 10);
-			wstring ws(buffer);
-			string input(ws.begin(), ws.end());
-			string time, code;
-			Init::Verify::CodeGenerate(time, code);
-
-			if (input != code) {
-				RetTimes++;
-				if (RetTimes < 3) {
-					MessageBox(hwnd, L"OTP code error!!", L"Error", MB_OK | MB_ICONERROR);
-				}
-				else {
-					MessageBox(hwnd, L"Exceeded maximum attempts.", L"Error", MB_OK | MB_ICONERROR);
-					DestroyWindow(hwnd);
-					Init::Client::QuitGame();
-					Exit();
-				}
-			}
-			else {
-				otp = true;
-				GlobalAddAtomA(XorStr("https://aimstar.tkm.icu"));
-				//ofstream outfile(fileName);
-				//outfile.close();
-				ShowWindow(hwnd, SW_HIDE);
-				system("cls");
-				Cheat();
-			}
-		}
-		if (LOWORD(wParam) == 3)
-		{
-			ShellExecuteA(NULL, "open", XorStr("https://aimstar.tkm.icu"), NULL, NULL, SW_SHOWNORMAL);
-			// ShellExecute(NULL, TEXT("open"), TEXT("https://aimstar.tkm.icu"), NULL, NULL, SW_SHOWNORMAL);
-		}
-		break;
-	}
-	case WM_DESTROY:
-	{
-		PostQuitMessage(0);
-		break;
-	}
-	default:
-		return DefWindowProc(hwnd, message, wParam, lParam);
-	}
+	Cheat();
 	return 0;
 }
 

@@ -416,15 +416,15 @@ namespace GUI
 			CircleImage((void*)AvatarImage, 40);
 			ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 15 + 48);
 			ImGui::SameLine();
-			ImGui::Text(XorStr("用户:\n%s"), MenuConfig::UserName);
+			ImGui::Text(XorStr(u8"用户:\n%s"), MenuConfig::UserName);
 			ImGui::EndChild();
 
 
 			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX() + 20, 85));
 #ifdef USERMODE
-			ImGui::Text(XorStr("普通版-%s"), __DATE__);
+			ImGui::Text(XorStr(u8"普通版-%s"), __DATE__);
 #else
-			ImGui::Text(XorStr("内核版-%s"), __DATE__);
+			ImGui::Text(XorStr(u8"内核版-%s"), __DATE__);
 #endif // USERMODE
 			
 			ImGui::SetCursorPos(MenuConfig::WCS.ChildPos);
