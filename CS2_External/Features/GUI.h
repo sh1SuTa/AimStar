@@ -76,7 +76,7 @@ bool ImGui::HotKey(const char* szLabel, unsigned int* pValue)
 
 	if (ImGui::BeginPopup(szLabel))
 	{
-		ImGui::Text("Press a key...");
+		ImGui::Text("等待按键...");
 		for (int key = 0x01; key <= 0xFE; ++key)
 		{
 			if (GetAsyncKeyState(key) & 0x8000)
@@ -416,15 +416,15 @@ namespace GUI
 			CircleImage((void*)AvatarImage, 40);
 			ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 15 + 48);
 			ImGui::SameLine();
-			ImGui::Text(XorStr("User:\n%s"), MenuConfig::UserName);
+			ImGui::Text(XorStr("用户:\n%s"), MenuConfig::UserName);
 			ImGui::EndChild();
 
 
 			ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX() + 20, 85));
 #ifdef USERMODE
-			ImGui::Text(XorStr("Ring3-%s"), __DATE__);
+			ImGui::Text(XorStr("普通版-%s"), __DATE__);
 #else
-			ImGui::Text(XorStr("Kernel-%s"), __DATE__);
+			ImGui::Text(XorStr("内核版-%s"), __DATE__);
 #endif // USERMODE
 			
 			ImGui::SetCursorPos(MenuConfig::WCS.ChildPos);
@@ -494,9 +494,9 @@ namespace GUI
 					ImGui::SeparatorText(XorStr(ICON_FA_LIGHTBULB" Glow"));
 					float SpeedMin = 1.f, SpeedMax = 20.f;
 					PutSwitch(Lang::MiscText.EnemySensor, 5.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::EnemySensor, true, "###GlowCol", reinterpret_cast<float*>(&MiscCFG::GlowColor));
-					PutSwitch(XorStr("Rainbow"), 5.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::GlowRainbow);
+					PutSwitch(XorStr(u8"彩虹"), 5.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::GlowRainbow);
 					if (MiscCFG::GlowRainbow)
-						PutSliderFloat(XorStr("Rainbow Speed: "), 5.f, &MiscCFG::Rainbow_Speed, &SpeedMin, &SpeedMax, "%.1f");
+						PutSliderFloat(XorStr(u8"变色速度: "), 5.f, &MiscCFG::Rainbow_Speed, &SpeedMin, &SpeedMax, "%.1f");
 
 					ImGui::SeparatorText(XorStr(ICON_FA_COMPASS" External Radar"));
 					float RadarPointSizeProportionMin = 0.8f, RadarPointSizeProportionMax = 2.f;
@@ -721,7 +721,7 @@ namespace GUI
 					ImGui::SameLine();
 					ImGui::SetNextItemWidth(165.f);
 					ImGui::Combo(XorStr("###HitSounds"), &MiscCFG::HitSound, XorStr("None\0Neverlose\0Skeet\0Fuck\0Senpai\0"));
-					PutSwitch(XorStr("Hit Marker"), 10.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::HitMarker);
+					PutSwitch(XorStr(u8"命中记号"), 10.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::HitMarker);
 					// SwitchExtendedButton("Hit Marker", 10.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::HitMarker, "...");
 					PutSwitch(Lang::MiscText.JumpThrow, 10.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::jumpthrow);
 					PutSwitch(Lang::MiscText.MoneyService, 10.f, ImGui::GetFrameHeight() * 1.7, &MiscCFG::MoneyService);
@@ -739,7 +739,7 @@ namespace GUI
 					ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 5.f);
 					ImGui::TextDisabled(Lang::MiscText.ThemeList);
 					ImGui::SameLine();
-					if (ImGui::Combo(XorStr("###Theme"), &MenuConfig::Theme, XorStr("AimStar\0N199aLose\0AimWhere\0Lumine\0Falitata\0Custom\0")))
+					if (ImGui::Combo(XorStr("###Theme"), &MenuConfig::Theme, XorStr(u8"AimStar\0N199aLose\0AimWhere\0Lumine\0Falitata\0自定义\0")))
 						StyleChanger::UpdateSkin(MenuConfig::Theme);
 					if (MenuConfig::Theme == 5)
 					{	
@@ -804,38 +804,33 @@ namespace GUI
 					ImGui::NewLine();
 					
 					ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 5.f);
-					if (ImGui::Button(XorStr(ICON_FA_COPY " Source Code"), { ImGui::GetColumnWidth() - 20.f, 25.f }))
-						Gui.OpenWebpage(XorStr("https://github.com/CowNowB/Aimstar"));
+					if (ImGui::Button(XorStr(u8"开源代码"), { ImGui::GetColumnWidth() - 20.f, 25.f }))
+						Gui.OpenWebpage(XorStr("https://gitee.com/cownow/CumStar"));
 					ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 5.f);
-					if (ImGui::Button(XorStr(ICON_FA_COMMENT_DOTS " Join Discord"), { ImGui::GetColumnWidth() - 20.f, 25.f }))
-						Gui.OpenWebpage(XorStr("https://discord.com/invite/VgRrxwesPz"));
 
-					if (MenuConfig::Country == XorStr("CN"))
-					{
-						ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 5.f);
-						if (ImGui::Button(XorStr(ICON_FA_COMMENT_DOTS " QQ Group"), { ImGui::GetColumnWidth() - 20.f, 25.f }))
-							Gui.OpenWebpage(XorStr("https://qm.qq.com/cgi-bin/qm/qr?k=1I-2ldOcQkFYCAk_4ayY2GhIPXUYePUa&jump_from=webapi&authKey=Ff3VOoKW8u61rE4WqF3U46e0mQco8M6TeWp7gKDyo9dB/KZfU75xPifeo4d8Ke4H"));
-					}
+					ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 5.f);
+					if (ImGui::Button(XorStr(u8"官方Q群"), { ImGui::GetColumnWidth() - 20.f, 25.f }))
+						Gui.OpenWebpage(XorStr("https://qm.qq.com/cgi-bin/qm/qr?k=1I-2ldOcQkFYCAk_4ayY2GhIPXUYePUa&jump_from=webapi&authKey=Ff3VOoKW8u61rE4WqF3U46e0mQco8M6TeWp7gKDyo9dB/KZfU75xPifeo4d8Ke4H"));
 
 					ImGui::NewLine();
 					ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 5.f);
-					if (ImGui::Button(XorStr("Update Offsets"), { 125.f, 25.f }))
+					if (ImGui::Button(XorStr(u8"更新基址"), { 125.f, 25.f }))
 					{
 						Gui.OpenWebpage(XorStr("https://aimstar.tkm.icu/updater"));
 
 					
-						ImGui::OpenPopup(XorStr("How to update:"));
+						ImGui::OpenPopup(XorStr(u8"How to update:"));
 					}
 					ImGui::SameLine();
-					if (ImGui::Button(XorStr("Safe Exit"), { 125.f, 25.f }))
+					if (ImGui::Button(XorStr(u8"安全退出"), { 125.f, 25.f }))
 						Init::Client::Exit();
 
-					if (ImGui::BeginPopupModal(XorStr("How to update:"), NULL, ImGuiWindowFlags_AlwaysAutoResize))
+					if (ImGui::BeginPopupModal(XorStr(u8"How to update:"), NULL, ImGuiWindowFlags_AlwaysAutoResize))
 					{
-						ImGui::Text("1. Click 'fetch Offsets' to fetch game offsets.");
-						ImGui::Text("2. Click 'Download YAML' to download the yaml file.");
-						ImGui::Text("3. Put the yaml file in 'Documents\\AimStar\\Offsets\\' folder.");
-						ImGui::Text("4. Restart the cheat.");
+						ImGui::Text(u8"1. 点击 'fetch Offsets' 以获取最新的数据(需要VPN).");
+						ImGui::Text(u8"2. 点击 'Download YAML' 下载yaml文件.");
+						ImGui::Text(u8"3. 将下载的数据文件放在 '文档\\AimStar\\Offsets\\' 文件夹内.");
+						ImGui::Text(u8"4. 重启作弊.");
 						if (ImGui::Button(XorStr("OK")))
 							ImGui::CloseCurrentPopup();
 					}
