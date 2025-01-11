@@ -198,6 +198,26 @@
     <ClInclude Include="Utils\Ext-Time.hpp" />
     <ClInclude Include="Utils\BytesManager.h" />
     <ClInclude Include="Features\Aimbot\SilentAim.hpp" />
+    <ClInclude Include="a2x\client_dll.hpp" />
+    <ClInclude Include="a2x\offsets.hpp" />
+    <ClInclude Include="a2x\buttons.hpp" />
+    <ClInclude Include="a2x\animationsystem_dll.hpp" />
+    <ClInclude Include="a2x\engine2_dll.hpp" />
+    <ClInclude Include="a2x\host_dll.hpp" />
+    <ClInclude Include="a2x\interfaces.hpp" />
+    <ClInclude Include="a2x\materialsystem2_dll.hpp" />
+    <ClInclude Include="a2x\networksystem_dll.hpp" />
+    <ClInclude Include="a2x\panorama_dll.hpp" />
+    <ClInclude Include="a2x\particles_dll.hpp" />
+    <ClInclude Include="a2x\pulse_system_dll.hpp" />
+    <ClInclude Include="a2x\rendersystemdx11_dll.hpp" />
+    <ClInclude Include="a2x\resourcesystem_dll.hpp" />
+    <ClInclude Include="a2x\scenesystem_dll.hpp" />
+    <ClInclude Include="a2x\schemasystem_dll.hpp" />
+    <ClInclude Include="a2x\server_dll.hpp" />
+    <ClInclude Include="a2x\soundsystem_dll.hpp" />
+    <ClInclude Include="a2x\vphysics2_dll.hpp" />
+    <ClInclude Include="a2x\worldrenderer_dll.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
@@ -244,9 +264,6 @@
     </ClCompile>
     <ClCompile Include="Bone.cpp">
       <Filter>Cheats\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Offsets.cpp">
-      <Filter>Cheats\Offsets</Filter>
     </ClCompile>
     <ClCompile Include="Utils\MemorySearch.cpp">
       <Filter>Utils</Filter>

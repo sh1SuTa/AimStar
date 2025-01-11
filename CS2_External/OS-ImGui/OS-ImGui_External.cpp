@@ -99,10 +99,8 @@ namespace OSImGui
 
     void  OSImGui_External::AttachAnotherWindow(std::string DestWindowName, std::string DestWindowClassName, std::function<void()> CallBack)
     {
-        if (!CallBack)
-            throw OSException("CallBack is empty");
-        if (DestWindowName.empty() && DestWindowClassName.empty())
-            throw OSException("DestWindowName and DestWindowClassName are empty");
+        
+        
 
         Window.Name = "Zekamashi External";
         Window.wName = StringToWstring(Window.Name);

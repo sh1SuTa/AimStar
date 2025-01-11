@@ -128,6 +128,7 @@ auto ioctl_dispatch(PDEVICE_OBJECT device_obj, PIRP irp	) -> NTSTATUS
 	auto ctl_code = stack->Parameters.DeviceIoControl.IoControlCode;
 	if (length >= sizeof(_requests))
 	{
+		//控制代码是否为我们定义的控制代码
 		if (ctl_code == ioctl_call_driver && requesthandler(buffer))
 		{
 			irp->IoStatus.Information = sizeof(_requests);

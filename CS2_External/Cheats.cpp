@@ -8,14 +8,14 @@
 #include "MenuConfig.hpp"
 
 #include "Utils/Initial/Init.h"
-
+#include "Utils/XorStr.h"
 #include "Features/ESP.h"
 #include "Features/GUI.h"
 #include "Features/RCS.H"
 #include "Features/BombTimer.h"
-#include "Utils/XorStr.h"
-#include "Features/Debugger.h"
 
+#include "Features/Debugger.h"
+using namespace std;
 
 
 int PreviousTotalHits = 0;
@@ -144,34 +144,32 @@ void Cheats::RenderESP(CEntity Entity,DWORD64 EntityAddress, CEntity LocalEntity
 
 bool GameKeepOn,UserBruted;
 int BruteC, BruteD = 0;
+//运行作弊的主要逻辑
 void Cheats::Run() noexcept
 {	
-	if (yamldata.IsNull())
+	//if (yamldata.IsNull())
+	//{
+	//	//std::ifstream fileStream(MenuConfig::path + XorStr("\\Offsets\\offsets.yaml"));
+	//	std::ifstream fileStream(XorStr("offsets.yaml"));
+	//	yamldata = YAML::Load(fileStream);
+	//	fileStream.close();
+	//}
+	
+	/*if (MenuConfig::DEC && BruteD  >= 63)
 	{
-		std::ifstream fileStream(MenuConfig::path + XorStr("\\Offsets\\offsets.yaml"));
-		yamldata = YAML::Load(fileStream);
-		fileStream.close();
-	}
-	if (MenuConfig::DRM && BruteD< 64)
-	{
-		Gui.OpenWebpage(XorStr("https://www.gov.cn/guoqing/2023-03/10/content_5745919.htm"));//绕过国服检测机制
-		Gui.OpenWebpage(XorStr("https://www.bilibili.com/video/BV12j411v7R7/"));
-		SignatureMutation();
-		BruteD++;
-	}	
-	if (MenuConfig::DEC && BruteD  >= 63)
-	{
+		cout << "快速bypass" << endl;
 		Cheats::FastBypass();
 		Debugger::Analyzer();
-	}
-	// Show menu
+	}*/
+	
 	static DWORD lastTick = 0; 
-	DWORD currentTick = GetTickCount(); 
+	DWORD currentTick = GetTickCount();
+	//ins键打开关闭菜单
 	if (((GetAsyncKeyState(VK_INSERT) & 0x8000) || (GetAsyncKeyState(VK_DELETE) & 0x8000)) && currentTick - lastTick >= 250) {
 		MenuConfig::ShowMenu = !MenuConfig::ShowMenu;
 		lastTick = currentTick;
 	}
-
+	//按HOME隐藏控制台
 	if (GetAsyncKeyState(VK_HOME) < 0 && !MenuConfig::ShowConsole)
 	{
 		MenuConfig::ShowConsole = true;
@@ -188,33 +186,32 @@ void Cheats::Run() noexcept
 		MenuConfig::ShowConsole = false;
 	}
 
-//	std::thread keyCheckThread(KeyCheckThread);
-//  std::future<void> Thread_PlayerESP = std::async(ESP::RenderPlayerESP, std::ref(Entity), std::ref(Rect));
 
-
+	//如果true展示菜单
 	if (MenuConfig::ShowMenu)
 	{
 		std::thread tGui(GUI::NewGui);
 		tGui.join();
 	}
-
+	//检测游戏是否运行
 	if (!Init::Client::isGameWindowActive())
 		return;
 
-	// The overlay should be rendered at the bottom
+	// 叠加层应呈现在底部，夜间模式
 	Misc::NightMode();
 
-	// Update matrix
-	if(!ProcessMgr.ReadMemory(gGame.GetMatrixAddress(), gGame.View.Matrix,64))
+	// 读矩阵地址
+	if(!ProcessMgr.ReadMemory(gGame.GetClientDLLAddress() + cs2_dumper::offsets::client_dll::dwViewMatrix, gGame.View.Matrix,64))
 		return;
-	// Update EntityList Entry
+	// 读实体列表
 	gGame.UpdateEntityListEntry();
 
 	DWORD64 LocalControllerAddress = 0;
 	DWORD64 LocalPawnAddress = 0;
-
-	if (!ProcessMgr.ReadMemory(gGame.GetLocalControllerAddress(), LocalControllerAddress))
+	
+	if (!ProcessMgr.ReadMemory(gGame.GetClientDLLAddress() +cs2_dumper::offsets::client_dll::dwLocalPlayerController, LocalControllerAddress))
 		return;
+	//读本地地址
 	if (!ProcessMgr.ReadMemory(gGame.GetLocalPawnAddress(), LocalPawnAddress))
 		return;
 	// LocalEntity
@@ -225,16 +222,12 @@ void Cheats::Run() noexcept
 		return;
 	if (MenuConfig::AvatarPath == L"")
 		MenuConfig::AvatarPath = MenuConfig::SteamPath + L"\\config\\avatarcache\\" + std::to_wstring(LocalEntity.Controller.SteamID) + L".png";
-	/*
-	if (MenuConfig::UserName != LocalEntity.Controller.PlayerName)
-		MenuConfig::UserName = LocalEntity.Controller.PlayerName;
-	too lazy deal UTF8 shit*/
+	
 	if (MenuConfig::UserName == "")
 		MenuConfig::UserName = getenv("USERNAME");
 
 	ProcessMgr.ReadMemory(LocalControllerAddress + Offset::CCSPlayerController.m_iPing, MenuConfig::Ping);
 
-	//std::wcout << MenuConfig::AvatarPath << std::endl;
 
 	if (!LocalEntity.UpdatePawn(LocalPawnAddress) && !MiscCFG::WorkInSpec)
 		return;
@@ -274,7 +267,7 @@ void Cheats::Run() noexcept
 		RadarSetting(Radar);
 
 	static float LastQuarterSec;
-	if (MenuConfig::CurTime > LastQuarterSec + 0.25f || MenuConfig::CurTime < -1 /*may game restart and recount curtime*/)
+	if (MenuConfig::CurTime > LastQuarterSec + 0.25f || MenuConfig::CurTime < -1 )
 	{
 		//per 1/4 second
 		MenuConfig::FPS = static_cast<int>(std::floor(1.0f / Global_Vars.m_frametime));
@@ -285,7 +278,7 @@ void Cheats::Run() noexcept
 	if (MenuConfig::TickCount != LastTick)
 	{
 		MenuConfig::ChkTime = MenuConfig::CurTime;
-		//fetch sth u donot wanna frequency read
+		
 		MenuConfig::ValidEntity.clear();
 		MenuConfig::ValidEntity.shrink_to_fit();
 		for (int i = 0; i < 64; i++)
@@ -304,7 +297,6 @@ void Cheats::Run() noexcept
 			if (!Entity.UpdateController(EntityAddress))
 				continue;
 
-			//here,grab it.
 			MenuConfig::ValidEntity.push_back(std::make_pair(Entity, EntityAddress));
 		}
 		GUI::InitHitboxList();
@@ -338,11 +330,6 @@ void Cheats::Run() noexcept
 
 			if (!Entity.ESPAlive())
 				continue;
-			//		if (MenuConfig::VisibleCheck && (!Entity.Pawn.bSpottedByMask > 0))
-			//			continue;
-
-
-					// Add entity to radar
 			if (RadarCFG::ShowRadar)
 				Radar.AddPoint(LocalEntity.Pawn.Pos, LocalEntity.Pawn.ViewAngle.y, Entity.Pawn.Pos, ImColor(237, 85, 106, 200), RadarCFG::RadarType, Entity.Pawn.ViewAngle.y);
 
@@ -351,17 +338,7 @@ void Cheats::Run() noexcept
 			if (!Entity.IsInScreen())
 				continue;
 
-			// Bone Debug
-		/*	for (int BoneIndex = 0; BoneIndex < Entity.BoneData.BonePosList.size(); BoneIndex++)
-			{
-				Vec2 ScreenPos{};
-				if (gGame.View.WorldToScreen(Entity.BoneData.BonePosList[BoneIndex].Pos, ScreenPos))
-				{
-					Gui.Text(std::to_string(BoneIndex), ScreenPos, ImColor(255, 255, 255, 255));
-				}
-			}*/
-
-			//update Bone select
+			
 
 			if (AimControl::HitboxList.size() != 0)
 			{

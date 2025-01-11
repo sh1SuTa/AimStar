@@ -259,6 +259,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="a2x\animationsystem_dll.hpp" />
+    <ClInclude Include="a2x\buttons.hpp" />
+    <ClInclude Include="a2x\client_dll.hpp" />
+    <ClInclude Include="a2x\engine2_dll.hpp" />
+    <ClInclude Include="a2x\host_dll.hpp" />
+    <ClInclude Include="a2x\interfaces.hpp" />
+    <ClInclude Include="a2x\materialsystem2_dll.hpp" />
+    <ClInclude Include="a2x\networksystem_dll.hpp" />
+    <ClInclude Include="a2x\offsets.hpp" />
+    <ClInclude Include="a2x\panorama_dll.hpp" />
+    <ClInclude Include="a2x\particles_dll.hpp" />
+    <ClInclude Include="a2x\pulse_system_dll.hpp" />
+    <ClInclude Include="a2x\rendersystemdx11_dll.hpp" />
+    <ClInclude Include="a2x\resourcesystem_dll.hpp" />
+    <ClInclude Include="a2x\scenesystem_dll.hpp" />
+    <ClInclude Include="a2x\schemasystem_dll.hpp" />
+    <ClInclude Include="a2x\server_dll.hpp" />
+    <ClInclude Include="a2x\soundsystem_dll.hpp" />
+    <ClInclude Include="a2x\vphysics2_dll.hpp" />
+    <ClInclude Include="a2x\worldrenderer_dll.hpp" />
     <ClInclude Include="Features\Aimbot\Ragebot.hpp" />
     <ClInclude Include="Bone.h" />
     <ClInclude Include="Cheats.h" />
@@ -382,7 +402,6 @@
     <ClCompile Include="Features\StyleChanger.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Offsets.cpp" />
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp" />
     <ClCompile Include="OS-ImGui\imgui\imgui_demo.cpp" />
     <ClCompile Include="OS-ImGui\imgui\imgui_draw.cpp" />

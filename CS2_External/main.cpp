@@ -12,38 +12,14 @@
 #include <KnownFolders.h>
 #include <ShlObj.h>
 #include <stdio.h>
+//#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" ) // 设置入口地址
 #ifndef USERMODE
 #include "Utils/kdm/kdmapper.hpp"
 #endif
 
 using namespace Lang;
-//#include "Utils/curl/curl.h"
-//#include "Utils/json/json.hpp"
+
 using namespace std;
-/*
-Contributors:
-	Shinyaluvs,
-	Nx0Ri,
-	ByteCorum,
-	Skarbor,
-	PedroGoncalves,
-	KeysIsCool,
-	Kenny,
-	Cr1ppl3,
-	Tairitsu,
-	sh1pi,
-	toepas,
-	djsacred,
-	tokinaa,
-	faster_bbc,
-	vsantos1,
-	5mmod,
-	gScream,
-	Hazetick,
-	styx,
-	user1232,
-	TaKaStuKi.sen
-*/
 
 namespace fs = filesystem;
 bool otp = false;
@@ -72,11 +48,10 @@ void RandomTitle()
 
 	SetConsoleTitle(title);
 }
-#ifndef USERMODE
+
 
 /* F:\LuvIstEmpty\Bimstar\x64\Release\Driver.sys (2024/8/10 1:23:29)
    起始位置(h): 00000000, 结束位置(h): 00001FFF, 长度(h): 00002000 */
-
 unsigned char Driver[8192] = {
 	0x4D, 0x5A, 0x90, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00,
 	0xFF, 0xFF, 0x00, 0x00, 0xB8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -766,10 +741,12 @@ unsigned char Driver[8192] = {
 size_t arraySize = sizeof(Driver) / sizeof(Driver[0]);
 
 void createDriver() {
-
+	// 创建一个输出文件流对象 outFile，用于将数据写入名为 "ASDriver.sys" 的文件。
+   // ios::binary 表示以二进制模式打开文件。
 	ofstream outFile("ASDriver.sys", ios::binary);
 
 	if (!outFile) {
+		// 如果文件打开失败，输出错误信息并返回。
 		cerr << "Create failed" << endl;
 		return;
 	}
@@ -885,10 +862,10 @@ int kdmap(const int argc, wchar_t** argv) {
 	if (!intel_driver::Unload(iqvw64e_device_handle)) {
 		Log(L"[-] Warning failed to fully unload vulnerable driver " << endl);
 	}
-	Log(L"[+] success" << endl);
+	Log("[+] 成功" << endl);
 }
 
-#endif
+
 //using json = nlohmann::json;
 
 
@@ -963,9 +940,8 @@ void AntiDebugger(string Log = "") noexcept
 }
 void Cheat()
 {
-#ifdef NDEBUG
-	// AntiDebugger("Initialize fail");
-#endif
+
+	//启用 Windows 系统上的 DPI（每英寸点数）感知
 	ImGui_ImplWin32_EnableDpiAwareness();
 	if (Init::Verify::CheckWindowVersion())
 	{
@@ -978,14 +954,11 @@ void Cheat()
 	srand((unsigned)time(NULL));
 	RandomTitle();
 	UpdateSteamPath();
-#ifdef USERMODE
-
-	cout << XorStr("[WARN] 你正在使用Usermode版本，该版本可能被VAC检测。") << endl;
-#else
+	//创建驱动文件
 	createDriver();
 	kdmap(1, nullptr);
 	remove("ASDriver.sys");
-#endif // USERMODE
+
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);	//Set the text color to green  
 	cout << R"(                                                                   
     ___    _          _____ __            
@@ -1026,12 +999,7 @@ void Cheat()
 		break;
 	}
 
-	if (!Offset::UpdateOffsets())
-	{
-		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << XorStr("\u3010\u9519\u8bef\u3011\u57fa\u5740\u66f4\u65b0\u5931\u8d25.") << endl;
-		Exit();
-	}
+	
 
 	if (!gGame.InitAddress())
 	{
@@ -1045,7 +1013,7 @@ void Cheat()
 
 	if (fs::exists(MenuConfig::path))
 	{
-		cout << XorStr("[Info] Config folder connected: ") << MenuConfig::path << endl;
+		cout << XorStr("[Info] 参数目录: ") << MenuConfig::path << endl;
 	}
 	else
 	{
@@ -1072,7 +1040,6 @@ void Cheat()
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
 	cout << XorStr("辅助加载完毕！") << endl;
 	cout << XorStr("按下[INS]或[DEL]键显隐菜单.") << endl;
-	cout << XorStr("按下[HOME]键隐藏本窗口.") << endl;
 	cout << XorStr("Have fun...") << endl << endl;
 	cout << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
@@ -1085,7 +1052,7 @@ void Cheat()
 	{
 		try
 		{
-			// Perfect World version
+			//国服版本
 			Gui.AttachAnotherWindow(XorStr("\u53cd\u6050\u7cbe\u82f1\uff1a\u5168\u7403\u653b\u52bf"), XorStr("SDL_app"), Cheats::Run);
 		}
 		catch (OSImGui::OSException& e)
@@ -1097,6 +1064,7 @@ void Cheat()
 
 int main(void)
 {
+	MenuConfig::ConsoleHandle = GetConsoleWindow();
 	Cheat();
 	return 0;
 }

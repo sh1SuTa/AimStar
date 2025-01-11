@@ -6,10 +6,7 @@
 #include "a2x/offsets.hpp"
 #include "a2x/client_dll.hpp"
 #include "a2x/buttons.hpp"
-/*
-We using a2x header for quick PoC while develop & to figure out type of data
-In the end, we use our own offset system by reading offset.yaml for release version.
-*/
+
 class CGlobalVarsBase
 {
 public:
@@ -28,6 +25,7 @@ public:
 	uint64_t m_current_map; //0x0178
 	uint64_t m_current_mapname; //0x0180
 };
+
 namespace Offset
 {
 
@@ -39,14 +37,14 @@ namespace Offset
 
 	inline DWORD EntityList = cs2_dumper::offsets::client_dll::dwEntityList;
 	inline DWORD Matrix = cs2_dumper::offsets::client_dll::dwViewMatrix;
-	inline DWORD ViewAngle = cs2_dumper::offsets::client_dll::dwViewAngles;
+	inline DWORD ViewAngle = cs2_dumper::offsets::client_dll::dwViewRender;
 	inline DWORD LocalPlayerController = cs2_dumper::offsets::client_dll::dwLocalPlayerController;
 	inline DWORD LocalPlayerPawn = cs2_dumper::offsets::client_dll::dwLocalPlayerPawn;
 	inline DWORD GlobalVars = cs2_dumper::offsets::client_dll::dwGlobalVars;
-	inline DWORD CSGOInput = cs2_dumper::offsets::client_dll::dwCSGOInput;
-	inline DWORD InventoryServices;
+	inline DWORD CSGOInput = 0x1A5E280;
+	inline DWORD InventoryServices = cs2_dumper::schemas::client_dll::CCSPlayerController::m_pInventoryServices;
 	inline DWORD PlantedC4 = cs2_dumper::offsets::client_dll::dwPlantedC4;
-	inline DWORD InputSystem = cs2_dumper::offsets::client_dll::dwCSGOInput;
+	inline DWORD InputSystem = cs2_dumper::offsets::inputsystem_dll::dwInputSystem;
 	inline DWORD Sensitivity = cs2_dumper::offsets::client_dll::dwSensitivity;
 	inline DWORD Pointer;
 //cvar stuff

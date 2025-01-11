@@ -12,7 +12,7 @@ namespace MenuConfig
 	inline std::string HWID = "";
 	inline bool DRM = false;
 	inline bool DEC = false;
-	inline HWND ConsoleHandle = nullptr;
+	inline HWND ConsoleHandle;
 
 	struct {
 		// 0: Visual 1: Aimbot 2: Misc 3: Config
@@ -75,9 +75,9 @@ namespace MenuConfig
 	inline int  HealthBarType = 0;
 
 	inline ImColor FovCircleColor = ImColor(180, 255, 0, 255);
-
+	// «∑Òœ‘ æ≤Àµ•
 	inline bool ShowMenu = true;
-	inline bool ShowConsole = true;
+	inline bool ShowConsole = false;
 
 	inline bool TriggerBot = false;
 	inline bool TriggerAlways = false;
