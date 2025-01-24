@@ -1,5 +1,5 @@
 // Generated using https://github.com/a2x/cs2-dumper
-// 2025-01-10 16:19:32.178112600 UTC
+// 2025-01-24 09:20:31.282403500 UTC
 
 #pragma once
 
@@ -48,8 +48,8 @@ namespace cs2_dumper {
                 constexpr std::ptrdiff_t m_nLODOverride = 0x6A; // 
                 constexpr std::ptrdiff_t m_nCubeMapPrecomputedHandshake = 0x6C; // 
                 constexpr std::ptrdiff_t m_nLightProbeVolumePrecomputedHandshake = 0x70; // 
-                constexpr std::ptrdiff_t m_renderableModel = 0x78; // 
-                constexpr std::ptrdiff_t m_renderable = 0x80; // 
+                constexpr std::ptrdiff_t m_renderableModel = 0x78; // CStrongHandle<InfoForResourceTypeCModel>
+                constexpr std::ptrdiff_t m_renderable = 0x80; // CStrongHandle<InfoForResourceTypeCRenderMesh>
             }
             // Parent: None
             // Field count: 3
@@ -95,7 +95,7 @@ namespace cs2_dumper {
                 constexpr std::ptrdiff_t m_lodSetups = 0x28; // CUtlVector<AggregateLODSetup_t>
                 constexpr std::ptrdiff_t m_visClusterMembership = 0x40; // 
                 constexpr std::ptrdiff_t m_fragmentTransforms = 0x58; // 
-                constexpr std::ptrdiff_t m_renderableModel = 0x70; // 
+                constexpr std::ptrdiff_t m_renderableModel = 0x70; // CStrongHandle<InfoForResourceTypeCModel>
             }
             // Parent: None
             // Field count: 7
@@ -128,7 +128,7 @@ namespace cs2_dumper {
                 constexpr std::ptrdiff_t m_instanceScales = 0x50; // 
                 constexpr std::ptrdiff_t m_instanceTintSrgb = 0x68; // 
                 constexpr std::ptrdiff_t m_tiles = 0x80; // 
-                constexpr std::ptrdiff_t m_renderableModel = 0x98; // 
+                constexpr std::ptrdiff_t m_renderableModel = 0x98; // CStrongHandle<InfoForResourceTypeCModel>
             }
             // Parent: None
             // Field count: 5
@@ -277,7 +277,7 @@ namespace cs2_dumper {
                 constexpr std::ptrdiff_t m_flDepth = 0x38; // 
                 constexpr std::ptrdiff_t m_vUVStart = 0x3C; // 
                 constexpr std::ptrdiff_t m_vUVEnd = 0x44; // 
-                constexpr std::ptrdiff_t m_pMaterial = 0x50; // 
+                constexpr std::ptrdiff_t m_pMaterial = 0x50; // CStrongHandle<InfoForResourceTypeIMaterial2>
                 constexpr std::ptrdiff_t m_nRenderOrder = 0x58; // 
                 constexpr std::ptrdiff_t m_vTintColor = 0x5C; // 
                 constexpr std::ptrdiff_t m_nSequenceOverride = 0x6C; // 
@@ -290,7 +290,7 @@ namespace cs2_dumper {
             namespace MaterialOverride_t {
                 constexpr std::ptrdiff_t m_nSubSceneObject = 0x4; // 
                 constexpr std::ptrdiff_t m_nDrawCallIndex = 0x8; // 
-                constexpr std::ptrdiff_t m_pMaterial = 0x10; // 
+                constexpr std::ptrdiff_t m_pMaterial = 0x10; // CStrongHandle<InfoForResourceTypeIMaterial2>
             }
             // Parent: None
             // Field count: 2

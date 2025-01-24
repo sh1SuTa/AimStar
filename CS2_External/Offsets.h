@@ -41,7 +41,7 @@ namespace Offset
 	inline DWORD LocalPlayerController = cs2_dumper::offsets::client_dll::dwLocalPlayerController;
 	inline DWORD LocalPlayerPawn = cs2_dumper::offsets::client_dll::dwLocalPlayerPawn;
 	inline DWORD GlobalVars = cs2_dumper::offsets::client_dll::dwGlobalVars;
-	inline DWORD CSGOInput = 0x1A5E280;
+	inline DWORD CSGOInput = 0x1A8E5D0;
 	inline DWORD InventoryServices = cs2_dumper::schemas::client_dll::CCSPlayerController::m_pInventoryServices;
 	inline DWORD PlantedC4 = cs2_dumper::offsets::client_dll::dwPlantedC4;
 	inline DWORD InputSystem = cs2_dumper::offsets::inputsystem_dll::dwInputSystem;

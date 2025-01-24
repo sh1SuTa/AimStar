@@ -147,13 +147,13 @@ int BruteC, BruteD = 0;
 //运行作弊的主要逻辑
 void Cheats::Run() noexcept
 {	
-	//if (yamldata.IsNull())
-	//{
-	//	//std::ifstream fileStream(MenuConfig::path + XorStr("\\Offsets\\offsets.yaml"));
-	//	std::ifstream fileStream(XorStr("offsets.yaml"));
-	//	yamldata = YAML::Load(fileStream);
-	//	fileStream.close();
-	//}
+	if (yamldata.IsNull())
+	{
+		//std::ifstream fileStream(MenuConfig::path + XorStr("\\Offsets\\offsets.yaml"));
+		std::ifstream fileStream(XorStr("offsets.yaml"));
+		yamldata = YAML::Load(fileStream);
+		fileStream.close();
+	}
 	
 	/*if (MenuConfig::DEC && BruteD  >= 63)
 	{

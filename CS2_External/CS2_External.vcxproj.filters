@@ -286,6 +286,7 @@
     <ClCompile Include="Utils\Ext-Color.cpp" />
     <ClCompile Include="Utils\Ext-Time.cpp" />
     <ClCompile Include="Utils\BytesManager.cpp" />
+    <ClCompile Include="Offsets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CS2_External.rc" />

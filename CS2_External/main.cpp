@@ -862,7 +862,7 @@ int kdmap(const int argc, wchar_t** argv) {
 	if (!intel_driver::Unload(iqvw64e_device_handle)) {
 		Log(L"[-] Warning failed to fully unload vulnerable driver " << endl);
 	}
-	Log("[+] 成功" << endl);
+	Log("[+] 驱动加载成功" << endl);
 }
 
 
@@ -938,6 +938,10 @@ void AntiDebugger(string Log = "") noexcept
 		exit(0);
 	}
 }
+void AutoHideWindow() {
+	Sleep(5000);
+	ShowWindow(MenuConfig::ConsoleHandle, SW_HIDE);
+}
 void Cheat()
 {
 
@@ -966,6 +970,7 @@ void Cheat()
   / /| | / / __ `__ \\__ \/ __/ __ `/ ___/
  / ___ |/ / / / / / /__/ / /_/ /_/ / /    
 /_/  |_/_/_/ /_/ /_/____/\__/\__,_/_/    
+	R.I.P
 	)" << endl;
 	printf(XorStr("%s-%s\n"), __DATE__, __TIME__);
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
@@ -998,9 +1003,14 @@ void Cheat()
 	default:
 		break;
 	}
-
+	if (!Offset::UpdateOffsets())
+	{
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+		cout << XorStr("\u3010\u9519\u8bef\u3011\u57fa\u5740\u66f4\u65b0\u5931\u8d25.") << endl;
+		Exit();
+	}
 	
-
+	//初始化地址
 	if (!gGame.InitAddress())
 	{
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
@@ -1013,7 +1023,7 @@ void Cheat()
 
 	if (fs::exists(MenuConfig::path))
 	{
-		cout << XorStr("[Info] 参数目录: ") << MenuConfig::path << endl;
+		//cout << XorStr("[Info] 参数目录: ") << MenuConfig::path << endl;
 	}
 	else
 	{
@@ -1040,9 +1050,12 @@ void Cheat()
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
 	cout << XorStr("辅助加载完毕！") << endl;
 	cout << XorStr("按下[INS]或[DEL]键显隐菜单.") << endl;
+	cout << XorStr("按[HOME]键可显示或隐藏控制台.") << endl;
 	cout << XorStr("Have fun...") << endl << endl;
 	cout << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+	cout << XorStr("五秒后隐藏控制台窗口...") << endl;
+	thread consoleDie(AutoHideWindow);
 
 	try
 	{
@@ -1060,6 +1073,7 @@ void Cheat()
 			cout << e.what() << endl;
 		}
 	}
+	
 }
 
 int main(void)

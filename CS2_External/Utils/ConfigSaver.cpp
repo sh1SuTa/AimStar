@@ -637,6 +637,6 @@ namespace MyConfigSaver {
 
         MenuConfig::HitboxUpdated = false;
 
-        std::cout << "[Info] Configuration loaded from " << MenuConfig::path + '\\' + filename << std::endl;
+        std::cout << XorStr("[Info] \u52a0\u8f7d\u9ed8\u8ba4\u53c2\u6570\u76ee\u5f55£º ") << MenuConfig::path + '\\' + filename << std::endl;
     }
 } // namespace ConfigSaver

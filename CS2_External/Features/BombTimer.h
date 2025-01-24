@@ -1,4 +1,5 @@
 #pragma once
+
 #include <chrono>
 #include <iostream>
 #include <utility>
@@ -17,7 +18,10 @@ namespace hash {
 	}
 }
 
+
 #define HASH(str) hash::runtime(str)
+
+
 namespace bmb
 {
 
@@ -253,18 +257,19 @@ namespace bmb
 			int damage = calculate_bomb_damage(Local.Pawn.Pos, getBombPos(isBombPlanted), Local.Pawn.Armor);
 			std::ostringstream ss,sv;
 			ss.precision(3);
-			ss << XorStr("Bomb on ") << (!getBombSite(isBombPlanted) ? "A" : "B") << ": " << std::fixed << remaining << " s";
-			sv << XorStr("Estim Damage : ") << damage;
+			ss << XorStr(u8"C4\u5df2\u5b89\u653e ") << (!getBombSite(isBombPlanted) ? "A" : "B") << ": " << std::fixed << remaining << " s";
+			sv << XorStr(u8"\u70b8\u5f39\u4f24\u5bb3 : ") << damage;
 			Gui.MyText(std::move(ss).str().c_str(), true);
 			Gui.MyProgressBar(barLength, { 185, 15 }, "", MiscCFG::BombTimerCol);
 			Gui.MyText(std::move(sv).str().c_str(), true);
 		}
 		else 
 		{
+		
 			barLength = 0.0f;
-			Gui.MyText(XorStr("C4 not planted"), true);
+			Gui.MyText(XorStr(u8"C4\u672a\u5b89\u88c5"), true);
 			Gui.MyProgressBar(0, { 187, 15 }, "", MiscCFG::BombTimerCol);
-			Gui.MyText(XorStr("Estim Damage : 0"), true);
+			Gui.MyText(XorStr(u8"\u70b8\u5f39\u4f24\u5bb3 : 0"), true);
 		}
 
 		ImGui::PopStyleColor();

@@ -1,5 +1,5 @@
 // Generated using https://github.com/a2x/cs2-dumper
-// 2025-01-10 16:19:32.178112600 UTC
+// 2025-01-24 09:20:31.282403500 UTC
 
 #pragma once
 
@@ -137,9 +137,9 @@ namespace cs2_dumper {
                 constexpr std::ptrdiff_t m_constants = 0x0; // 
                 constexpr std::ptrdiff_t m_variables = 0x18; // 
                 constexpr std::ptrdiff_t m_functions = 0x30; // 
-                constexpr std::ptrdiff_t m_constantMap = 0x48; // 
-                constexpr std::ptrdiff_t m_variableMap = 0x68; // 
-                constexpr std::ptrdiff_t m_functionMap = 0x88; // 
+                constexpr std::ptrdiff_t m_constantMap = 0x48; // CUtlHashtable<CUtlStringToken,int32>
+                constexpr std::ptrdiff_t m_variableMap = 0x68; // CUtlHashtable<CUtlStringToken,int32>
+                constexpr std::ptrdiff_t m_functionMap = 0x88; // CUtlHashtable<CUtlStringToken,int32>
             }
             // Parent: None
             // Field count: 0
@@ -330,8 +330,8 @@ namespace cs2_dumper {
             // MGetKV3ClassDefaults
             namespace CFuseProgram {
                 constexpr std::ptrdiff_t m_programBuffer = 0x0; // 
-                constexpr std::ptrdiff_t m_variablesRead = 0x18; // 
-                constexpr std::ptrdiff_t m_variablesWritten = 0x30; // 
+                constexpr std::ptrdiff_t m_variablesRead = 0x18; // CUtlVector<FuseVariableIndex_t>
+                constexpr std::ptrdiff_t m_variablesWritten = 0x30; // CUtlVector<FuseVariableIndex_t>
                 constexpr std::ptrdiff_t m_nMaxTempVarsUsed = 0x48; // 
             }
             // Parent: None

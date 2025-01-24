@@ -109,7 +109,7 @@ namespace GUI
 			return;
 
 		MyConfigSaver::LoadConfig(XorStr("default.yml"));
-		std::cout << XorStr("[Info] Default configuration loaded!") << std::endl;
+		//std::cout << XorStr("[Info] Default configuration loaded!") << std::endl;
 
 		MenuConfig::defaultConfig = false;
 	}

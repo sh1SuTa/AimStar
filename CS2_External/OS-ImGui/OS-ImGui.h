@@ -16,7 +16,7 @@ namespace OSImGui
 		void ShowRawImage(unsigned char* image, int width, int height);
 		// 文本
 		void Text(std::string Text, Vec2 Pos, ImColor Color, float FontSize = 15, bool KeepCenter = false, bool IsItem = false);
-		void MyText(std::string Text, bool isCenter);
+		void MyText(const char* Text, bool isCenter);
 		// 描边文本
 		void StrokeText(std::string Text, Vec2 Pos, ImColor Color, float FontSize = 15, bool KeepCenter = false,bool IsItem = false);
 		// 矩形

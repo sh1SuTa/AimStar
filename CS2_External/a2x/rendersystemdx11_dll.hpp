@@ -1,5 +1,5 @@
 // Generated using https://github.com/a2x/cs2-dumper
-// 2025-01-10 16:19:32.178112600 UTC
+// 2025-01-24 09:20:31.282403500 UTC
 
 #pragma once
 
@@ -83,7 +83,7 @@ namespace cs2_dumper {
             // Parent: None
             // Field count: 1
             namespace VsInputSignature_t {
-                constexpr std::ptrdiff_t m_elems = 0x0; // 
+                constexpr std::ptrdiff_t m_elems = 0x0; // CUtlVector<VsInputSignatureElement_t>
             }
             // Parent: None
             // Field count: 7

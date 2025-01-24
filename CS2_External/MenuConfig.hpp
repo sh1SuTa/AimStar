@@ -12,7 +12,7 @@ namespace MenuConfig
 	inline std::string HWID = "";
 	inline bool DRM = false;
 	inline bool DEC = false;
-	inline HWND ConsoleHandle;
+	inline HWND ConsoleHandle;//øÿ÷∆Ã®œ‘ æ
 
 	struct {
 		// 0: Visual 1: Aimbot 2: Misc 3: Config
