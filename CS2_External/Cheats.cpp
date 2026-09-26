@@ -110,7 +110,7 @@ void Cheats::RenderESP(CEntity Entity,DWORD64 EntityAddress, CEntity LocalEntity
 	if (ESPConfig::RenderDistance == 0 || (distance <= ESPConfig::RenderDistance && ESPConfig::RenderDistance > 0))
 	{
 		ESP::RenderPlayerESP(LocalEntity, Entity, Rect, LocalPlayerControllerIndex, index);
-		Render::DrawDistance(LocalEntity, Entity, Rect);
+		Render::DrawDistance(LocalEntity, Entity, Rect);//绘制距离
 
 		// Draw HealthBar
 		if (ESPConfig::ShowHealthBar)
@@ -339,7 +339,7 @@ void Cheats::Run() noexcept
 				continue;
 
 			
-
+			/*
 			if (AimControl::HitboxList.size() != 0)
 			{
 
@@ -377,7 +377,7 @@ void Cheats::Run() noexcept
 						continue;
 				}
 			}
-
+			*/
 			// Check if ESP should be rendered based on hotkey state
 			if (ESPConfig::ESPenabled && (GetAsyncKeyState(ESP::HotKey) & 0x8000 || ESPConfig::AlwaysActive)) {
 				bool renderSuccess = false;

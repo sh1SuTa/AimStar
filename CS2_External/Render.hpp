@@ -209,21 +209,34 @@ namespace Render
 		Gui.RectangleFilled(Vec2{ Pos.x + 5, Pos.y }, Vec2{ 15, 3 }, Color);
 	}
 
-	// �������
+	
+	
+
 	ImVec4 Get2DBox(const CEntity& Entity)
 	{
-		BoneJointPos Head = Entity.GetBone().BonePosList[BONEINDEX::head];
+		// 脚底
+		Vec3 feetWorld = Entity.Pawn.Pos;          // 或 Entity.Pawn.Pos
+		// 头顶（脚底 + 70）
+		Vec3 headWorld = feetWorld + Vec3{ 0.f, 0.f, 70.f };
 
-		Vec2 Size, Pos;
-		Size.y = (Entity.Pawn.ScreenPos.y - Head.ScreenPos.y) * 1.09;
-		Size.x = Size.y * 0.6;
+		Vec2 headScreen, feetScreen;
 
-		Pos = ImVec2(Entity.Pawn.ScreenPos.x - Size.x / 2, Head.ScreenPos.y- Size.y*0.08);
+		if (!gGame.View.WorldToScreen(headWorld, headScreen) ||
+			!gGame.View.WorldToScreen(feetWorld, feetScreen)) {
+			return ImVec4{ 0.f, 0.f, 0.f, 0.f };
+		}
 
-		return ImVec4{ Pos.x,Pos.y,Size.x,Size.y };
+		float height = feetScreen.y - headScreen.y;
+		if (height <= 1.f) return ImVec4{ 0.f, 0.f, 0.f, 0.f };
+
+		float width = height * 0.6f;
+
+		float x = headScreen.x - width * 0.5f;
+		float y = headScreen.y;
+
+		return ImVec4{ x, y, width, height };
 	}
 
-	// ��������
 	void DrawBone(const CEntity& Entity, ImColor Color, float Thickness)
 	{
 		if (!ESPConfig::ShowBoneESP)

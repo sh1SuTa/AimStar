@@ -191,7 +191,7 @@ namespace OSImGui
         this->Text(Text, Vec2(Pos.x + 1, Pos.y - 1), ImColor(0, 0, 0), FontSize, KeepCenter,IsItem);
         this->Text(Text, Pos, Color, FontSize, KeepCenter, IsItem);
     }
-
+    //×óÉÏ½ÇÎ»ÖÃ Pos + ¿í¸ß Size
     void OSImGui::Rectangle(Vec2 Pos, Vec2 Size, ImColor Color, float Thickness, float Rounding, bool IsItem)
     {
         auto DrawList = ImGui::GetBackgroundDrawList();
