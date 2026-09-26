@@ -1,28 +1,29 @@
 // Generated using https://github.com/a2x/cs2-dumper
-// 2025-01-24 09:20:31.282403500 UTC
+// 2026-09-26 01:32:52.676149600 UTC
 
 #pragma once
 
 #include <cstddef>
+#include <cstdint>
 
 namespace cs2_dumper {
     // Module: client.dll
     namespace buttons {
-        constexpr std::ptrdiff_t attack = 0x1866610;
-        constexpr std::ptrdiff_t attack2 = 0x18666A0;
-        constexpr std::ptrdiff_t back = 0x18668E0;
-        constexpr std::ptrdiff_t duck = 0x1866BB0;
-        constexpr std::ptrdiff_t forward = 0x1866850;
-        constexpr std::ptrdiff_t jump = 0x1866B20;
-        constexpr std::ptrdiff_t left = 0x1866970;
-        constexpr std::ptrdiff_t lookatweapon = 0x1A8E4F0;
-        constexpr std::ptrdiff_t reload = 0x1866580;
-        constexpr std::ptrdiff_t right = 0x1866A00;
-        constexpr std::ptrdiff_t showscores = 0x1A8E3D0;
-        constexpr std::ptrdiff_t sprint = 0x18664F0;
-        constexpr std::ptrdiff_t turnleft = 0x1866730;
-        constexpr std::ptrdiff_t turnright = 0x18667C0;
-        constexpr std::ptrdiff_t use = 0x1866A90;
-        constexpr std::ptrdiff_t zoom = 0x1A8E460;
+        constexpr std::ptrdiff_t attack = 0x22300C0;
+        constexpr std::ptrdiff_t attack2 = 0x2230150;
+        constexpr std::ptrdiff_t back = 0x2230390;
+        constexpr std::ptrdiff_t duck = 0x2230660;
+        constexpr std::ptrdiff_t forward = 0x2230300;
+        constexpr std::ptrdiff_t jump = 0x22305D0;
+        constexpr std::ptrdiff_t left = 0x2230420;
+        constexpr std::ptrdiff_t lookatweapon = 0x2575AD0;
+        constexpr std::ptrdiff_t reload = 0x2230030;
+        constexpr std::ptrdiff_t right = 0x22304B0;
+        constexpr std::ptrdiff_t showscores = 0x25759B0;
+        constexpr std::ptrdiff_t sprint = 0x222FFA0;
+        constexpr std::ptrdiff_t turnleft = 0x22301E0;
+        constexpr std::ptrdiff_t turnright = 0x2230270;
+        constexpr std::ptrdiff_t use = 0x2230540;
+        constexpr std::ptrdiff_t zoom = 0x2575A40;
     }
 }

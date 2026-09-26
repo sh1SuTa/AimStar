@@ -27,8 +27,8 @@ void SkinChanger::SetWeaponSkin(int weaponID, DWORD64 weapon, DWORD64 weaponGame
 	// Set item id high
 	ProcessMgr.WriteMemory(weapon + Offset::EconEntity.AttributeManager + Offset::WeaponBaseData.Item + Offset::EconEntity.ItemIDHigh, high);
 	
-	}
-
+}
+/**
 void SkinChanger::Run(const CEntity& LocalPlayer, CGame Game)
 {
 	auto EntityList = Game.GetEntityListAddress();
@@ -66,3 +66,4 @@ void SkinChanger::Run(const CEntity& LocalPlayer, CGame Game)
 		ProcessMgr.WriteMemory(ViewGameSenceNode + 0x160 + Offset::WeaponBaseData.m_MeshGroupMask, Mask);
 	}
 }
+**/

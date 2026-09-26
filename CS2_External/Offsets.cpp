@@ -27,8 +27,8 @@ DWORD64 SearchOffsets(std::string Signature, DWORD64 ModuleAddress)
 bool Offset::UpdateOffsets()
 {
 
-	//std::string offsetPath = MenuConfig::path + XorStr("\\Offsets\\offsets.yaml");
-	std::string offsetPath = XorStr("offsets.yaml");
+	std::string offsetPath = MenuConfig::path + XorStr("\\Offsets\\offsets.yaml");
+	
 
 	if (!fs::exists(offsetPath)) {
 		if (fs::create_directories(MenuConfig::path + XorStr("\\Offsets")))
@@ -99,21 +99,21 @@ bool Offset::UpdateOffsets()
 	Offset::C_BasePlayerPawn.m_vOldOrigin = MyConfigSaver::ReadData(offset["client_dll"]["C_BasePlayerPawn"]["m_vOldOrigin"], 0);
 	Offset::C_BasePlayerPawn.m_hController = MyConfigSaver::ReadData(offset["client_dll"]["C_BasePlayerPawn"]["m_hController"], 0);
 
-	Offset::C_CSPlayerPawnBase.m_pViewModelServices = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_pViewModelServices"], 0);
+	//Offset::C_CSPlayerPawnBase.m_pViewModelServices = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_pViewModelServices"], 0);
 	Offset::C_CSPlayerPawnBase.m_pClippingWeapon = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_pClippingWeapon"], 0);
-	Offset::C_CSPlayerPawnBase.m_angEyeAngles = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_angEyeAngles"], 0);
-	Offset::C_CSPlayerPawnBase.m_vecLastClipCameraPos = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_vecLastClipCameraPos"], 0);
+	//Offset::C_CSPlayerPawnBase.m_angEyeAngles = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_angEyeAngles"], 0);
+	//Offset::C_CSPlayerPawnBase.m_vecLastClipCameraPos = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_vecLastClipCameraPos"], 0);
 	Offset::C_CSPlayerPawnBase.m_flFlashMaxAlpha = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_flFlashMaxAlpha"], 0);
 	Offset::C_CSPlayerPawnBase.m_flFlashDuration = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_flFlashDuration"], 0);
-	Offset::C_CSPlayerPawnBase.m_iIDEntIndex = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_iIDEntIndex"], 0);
+	//Offset::C_CSPlayerPawnBase.m_iIDEntIndex = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawnBase"]["m_iIDEntIndex"], 0);
 
 	Offset::C_CSPlayerPawn.m_pBulletServices = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_pBulletServices"], 0);
 	Offset::C_CSPlayerPawn.m_bIsScoped = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_bIsScoped"], 0);
 	Offset::C_CSPlayerPawn.m_bIsDefusing = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_bIsDefusing"], 0);
 	Offset::C_CSPlayerPawn.m_ArmorValue = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_ArmorValue"], 0);
 	Offset::C_CSPlayerPawn.m_iShotsFired = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_iShotsFired"], 0);
-	Offset::C_CSPlayerPawn.m_aimPunchAngle = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_aimPunchAngle"], 0);
-	Offset::C_CSPlayerPawn.m_aimPunchCache = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_aimPunchCache"], 0);
+	//Offset::C_CSPlayerPawn.m_aimPunchAngle = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_aimPunchAngle"], 0);
+	//Offset::C_CSPlayerPawn.m_aimPunchCache = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_aimPunchCache"], 0);
 	Offset::C_CSPlayerPawn.m_bIsBuyMenuOpen = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_bIsBuyMenuOpen"], 0);
 	Offset::C_CSPlayerPawn.m_bWaitForNoAttack = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_bWaitForNoAttack"], 0);
 	Offset::C_CSPlayerPawn.m_bSpottedByMask = MyConfigSaver::ReadData(offset["client_dll"]["C_CSPlayerPawn"]["m_entitySpottedState"], 0) + MyConfigSaver::ReadData(offset["client_dll"]["EntitySpottedState_t"]["m_bSpottedByMask"], 0);
@@ -125,8 +125,8 @@ bool Offset::UpdateOffsets()
 	Offset::C_PlantedC4.m_nBombSite = MyConfigSaver::ReadData(offset["client_dll"]["C_PlantedC4"]["m_nBombSite"], 0);
 
 	Offset::CPlayer_ObserverServices.m_hObserverTarget = MyConfigSaver::ReadData(offset["client_dll"]["CPlayer_ObserverServices"]["m_hObserverTarget"], 0);
-	Offset::CCSPlayer_ViewModelServices.m_hViewModel = MyConfigSaver::ReadData(offset["client_dll"]["CCSPlayer_ViewModelServices"]["m_hViewModel"], 0);
-	Offset::CPlayer_MovementServices_Humanoid.m_nCrouchState = MyConfigSaver::ReadData(offset["client_dll"]["CPlayer_MovementServices_Humanoid"]["m_nCrouchState"], 0);
+	//Offset::CCSPlayer_ViewModelServices.m_hViewModel = MyConfigSaver::ReadData(offset["client_dll"]["CCSPlayer_ViewModelServices"]["m_hViewModel"], 0);
+	//Offset::CPlayer_MovementServices_Humanoid.m_nCrouchState = MyConfigSaver::ReadData(offset["client_dll"]["CPlayer_MovementServices_Humanoid"]["m_nCrouchState"], 0);
 	Offset::CCSPlayerBase_CameraServices.m_iFOVStart = MyConfigSaver::ReadData(offset["client_dll"]["CCSPlayerBase_CameraServices"]["m_iFOVStart"], 0);
 	Offset::CCSPlayer_BulletServices.m_totalHitsOnServer = MyConfigSaver::ReadData(offset["client_dll"]["CCSPlayer_BulletServices"]["m_totalHitsOnServer"], 0);
 

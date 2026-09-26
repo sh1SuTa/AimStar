@@ -1,16 +1,44 @@
 // Generated using https://github.com/a2x/cs2-dumper
-// 2025-01-24 09:20:31.282403500 UTC
+// 2026-09-26 01:32:52.676149600 UTC
 
 #pragma once
 
 #include <cstddef>
+#include <cstdint>
 
 namespace cs2_dumper {
     namespace schemas {
         // Module: resourcesystem.dll
-        // Class count: 59
-        // Enum count: 2
+        // Class count: 62
+        // Enum count: 5
         namespace resourcesystem_dll {
+            // Alignment: 4
+            // Member count: 4
+            enum class NoiseStreamModifier_t : uint32_t {
+                NOISE_STREAM_MODIFIER_NONE = 0x0,
+                NOISE_STREAM_MODIFIER_LINES = 0x1,
+                NOISE_STREAM_MODIFIER_CLUMPS = 0x2,
+                NOISE_STREAM_MODIFIER_RINGS = 0x3
+            };
+            // Alignment: 4
+            // Member count: 6
+            enum class NoiseStreamTurbulence_t : uint32_t {
+                NOISE_STREAM_TURB_NONE = 0x0,
+                NOISE_STREAM_TURB_HIGHLIGHT = 0x1,
+                NOISE_STREAM_TURB_FEEDBACK = 0x2,
+                NOISE_STREAM_TURB_LOOPY = 0x3,
+                NOISE_STREAM_TURB_CONTRAST = 0x4,
+                NOISE_STREAM_TURB_ALTERNATE = 0x5
+            };
+            // Alignment: 4
+            // Member count: 5
+            enum class NoiseStreamType_t : uint32_t {
+                NOISE_STREAM_TYPE_PERLIN = 0x0,
+                NOISE_STREAM_TYPE_SIMPLEX = 0x1,
+                NOISE_STREAM_TYPE_WORLEY = 0x2,
+                NOISE_STREAM_TYPE_CURL = 0x3,
+                NOISE_STREAM_TYPE_NONE = 0x4
+            };
             // Alignment: 1
             // Member count: 9
             enum class FuseVariableType_t : uint8_t {
@@ -35,14 +63,13 @@ namespace cs2_dumper {
             //
             // Metadata:
             // MResourceTypeForInfoType
-            namespace InfoForResourceTypeCNmIKRig {
+            namespace InfoForResourceTypeCResponseRulesList {
             }
             // Parent: None
-            // Field count: 0
-            //
-            // Metadata:
-            // MResourceTypeForInfoType
-            namespace InfoForResourceTypeCResponseRulesList {
+            // Field count: 2
+            namespace AABBWS_t {
+                constexpr std::ptrdiff_t m_vMinBounds = 0x0; // VectorWS
+                constexpr std::ptrdiff_t m_vMaxBounds = 0xC; // VectorWS
             }
             // Parent: None
             // Field count: 0
@@ -63,20 +90,13 @@ namespace cs2_dumper {
             //
             // Metadata:
             // MResourceTypeForInfoType
-            namespace InfoForResourceTypeCChoreoSceneFileData {
-            }
-            // Parent: None
-            // Field count: 0
-            //
-            // Metadata:
-            // MResourceTypeForInfoType
             namespace InfoForResourceTypeCVSoundStackScriptList {
             }
             // Parent: None
             // Field count: 2
             namespace PackedAABB_t {
-                constexpr std::ptrdiff_t m_nPackedMin = 0x0; // 
-                constexpr std::ptrdiff_t m_nPackedMax = 0x4; // 
+                constexpr std::ptrdiff_t m_nPackedMin = 0x0; // uint32
+                constexpr std::ptrdiff_t m_nPackedMax = 0x4; // uint32
             }
             // Parent: None
             // Field count: 0
@@ -98,14 +118,14 @@ namespace cs2_dumper {
             // Metadata:
             // MGetKV3ClassDefaults
             namespace ConstantInfo_t {
-                constexpr std::ptrdiff_t m_name = 0x0; // 
-                constexpr std::ptrdiff_t m_nameToken = 0x8; // 
-                constexpr std::ptrdiff_t m_flValue = 0xC; // 
+                constexpr std::ptrdiff_t m_name = 0x0; // CUtlString
+                constexpr std::ptrdiff_t m_nameToken = 0x8; // CUtlStringToken
+                constexpr std::ptrdiff_t m_flValue = 0xC; // float32
             }
             // Parent: None
             // Field count: 1
             namespace FuseFunctionIndex_t {
-                constexpr std::ptrdiff_t m_Value = 0x0; // 
+                constexpr std::ptrdiff_t m_Value = 0x0; // uint16
             }
             // Parent: None
             // Field count: 0
@@ -134,9 +154,9 @@ namespace cs2_dumper {
             // Metadata:
             // MGetKV3ClassDefaults
             namespace CFuseSymbolTable {
-                constexpr std::ptrdiff_t m_constants = 0x0; // 
-                constexpr std::ptrdiff_t m_variables = 0x18; // 
-                constexpr std::ptrdiff_t m_functions = 0x30; // 
+                constexpr std::ptrdiff_t m_constants = 0x0; // CUtlVector<ConstantInfo_t>
+                constexpr std::ptrdiff_t m_variables = 0x18; // CUtlVector<VariableInfo_t>
+                constexpr std::ptrdiff_t m_functions = 0x30; // CUtlVector<FunctionInfo_t>
                 constexpr std::ptrdiff_t m_constantMap = 0x48; // CUtlHashtable<CUtlStringToken,int32>
                 constexpr std::ptrdiff_t m_variableMap = 0x68; // CUtlHashtable<CUtlStringToken,int32>
                 constexpr std::ptrdiff_t m_functionMap = 0x88; // CUtlHashtable<CUtlStringToken,int32>
@@ -156,12 +176,11 @@ namespace cs2_dumper {
             namespace InfoForResourceTypeCVoxelVisibility {
             }
             // Parent: None
-            // Field count: 1
+            // Field count: 0
             //
             // Metadata:
-            // MGetKV3ClassDefaults
-            namespace TestResource_t {
-                constexpr std::ptrdiff_t m_name = 0x0; // 
+            // MResourceTypeForInfoType
+            namespace InfoForResourceTypeISmartProp {
             }
             // Parent: None
             // Field count: 0
@@ -194,8 +213,8 @@ namespace cs2_dumper {
             // Parent: None
             // Field count: 2
             namespace AABB_t {
-                constexpr std::ptrdiff_t m_vMinBounds = 0x0; // 
-                constexpr std::ptrdiff_t m_vMaxBounds = 0xC; // 
+                constexpr std::ptrdiff_t m_vMinBounds = 0x0; // Vector
+                constexpr std::ptrdiff_t m_vMaxBounds = 0xC; // Vector
             }
             // Parent: None
             // Field count: 0
@@ -210,12 +229,12 @@ namespace cs2_dumper {
             // Metadata:
             // MGetKV3ClassDefaults
             namespace VariableInfo_t {
-                constexpr std::ptrdiff_t m_name = 0x0; // 
-                constexpr std::ptrdiff_t m_nameToken = 0x8; // 
-                constexpr std::ptrdiff_t m_nIndex = 0xC; // 
-                constexpr std::ptrdiff_t m_nNumComponents = 0xE; // 
-                constexpr std::ptrdiff_t m_eVarType = 0xF; // 
-                constexpr std::ptrdiff_t m_eAccess = 0x10; // 
+                constexpr std::ptrdiff_t m_name = 0x0; // CUtlString
+                constexpr std::ptrdiff_t m_nameToken = 0x8; // CUtlStringToken
+                constexpr std::ptrdiff_t m_nIndex = 0xC; // FuseVariableIndex_t
+                constexpr std::ptrdiff_t m_nNumComponents = 0xE; // uint8
+                constexpr std::ptrdiff_t m_eVarType = 0xF; // FuseVariableType_t
+                constexpr std::ptrdiff_t m_eAccess = 0x10; // FuseVariableAccess_t
             }
             // Parent: None
             // Field count: 0
@@ -227,10 +246,10 @@ namespace cs2_dumper {
             // Parent: None
             // Field count: 4
             namespace FourQuaternions {
-                constexpr std::ptrdiff_t x = 0x0; // 
-                constexpr std::ptrdiff_t y = 0x10; // 
-                constexpr std::ptrdiff_t z = 0x20; // 
-                constexpr std::ptrdiff_t w = 0x30; // 
+                constexpr std::ptrdiff_t x = 0x0; // fltx4
+                constexpr std::ptrdiff_t y = 0x10; // fltx4
+                constexpr std::ptrdiff_t z = 0x20; // fltx4
+                constexpr std::ptrdiff_t w = 0x30; // fltx4
             }
             // Parent: None
             // Field count: 0
@@ -251,6 +270,13 @@ namespace cs2_dumper {
             //
             // Metadata:
             // MResourceTypeForInfoType
+            namespace InfoForResourceTypeCChoreoSceneResource {
+            }
+            // Parent: None
+            // Field count: 0
+            //
+            // Metadata:
+            // MResourceTypeForInfoType
             namespace InfoForResourceTypeCNmSkeleton {
             }
             // Parent: None
@@ -258,7 +284,7 @@ namespace cs2_dumper {
             //
             // Metadata:
             // MResourceTypeForInfoType
-            namespace InfoForResourceTypeTestResource_t {
+            namespace InfoForResourceTypeCTestResourceData {
             }
             // Parent: None
             // Field count: 0
@@ -300,7 +326,7 @@ namespace cs2_dumper {
             //
             // Metadata:
             // MResourceTypeForInfoType
-            namespace InfoForResourceTypeCNmGraphVariation {
+            namespace InfoForResourceTypeCSurfaceGraph {
             }
             // Parent: None
             // Field count: 0
@@ -317,22 +343,15 @@ namespace cs2_dumper {
             namespace InfoForResourceTypeCNmGraphDefinition {
             }
             // Parent: None
-            // Field count: 0
-            //
-            // Metadata:
-            // MResourceTypeForInfoType
-            namespace InfoForResourceTypeCSmartProp {
-            }
-            // Parent: None
             // Field count: 4
             //
             // Metadata:
             // MGetKV3ClassDefaults
             namespace CFuseProgram {
-                constexpr std::ptrdiff_t m_programBuffer = 0x0; // 
+                constexpr std::ptrdiff_t m_programBuffer = 0x0; // CUtlVector<uint8>
                 constexpr std::ptrdiff_t m_variablesRead = 0x18; // CUtlVector<FuseVariableIndex_t>
                 constexpr std::ptrdiff_t m_variablesWritten = 0x30; // CUtlVector<FuseVariableIndex_t>
-                constexpr std::ptrdiff_t m_nMaxTempVarsUsed = 0x48; // 
+                constexpr std::ptrdiff_t m_nMaxTempVarsUsed = 0x48; // int32
             }
             // Parent: None
             // Field count: 0
@@ -367,6 +386,13 @@ namespace cs2_dumper {
             //
             // Metadata:
             // MResourceTypeForInfoType
+            namespace InfoForResourceTypeCVDSPResource {
+            }
+            // Parent: None
+            // Field count: 0
+            //
+            // Metadata:
+            // MResourceTypeForInfoType
             namespace InfoForResourceTypeIVectorGraphic {
             }
             // Parent: None
@@ -384,16 +410,23 @@ namespace cs2_dumper {
             namespace InfoForResourceTypeIPulseGraphDef {
             }
             // Parent: None
+            // Field count: 0
+            //
+            // Metadata:
+            // MResourceTypeForInfoType
+            namespace InfoForResourceTypeCVDataItemDefs {
+            }
+            // Parent: None
             // Field count: 5
             //
             // Metadata:
             // MGetKV3ClassDefaults
             namespace FunctionInfo_t {
-                constexpr std::ptrdiff_t m_name = 0x8; // 
-                constexpr std::ptrdiff_t m_nameToken = 0x10; // 
-                constexpr std::ptrdiff_t m_nParamCount = 0x14; // 
-                constexpr std::ptrdiff_t m_nIndex = 0x18; // 
-                constexpr std::ptrdiff_t m_bIsPure = 0x1A; // 
+                constexpr std::ptrdiff_t m_name = 0x8; // CUtlString
+                constexpr std::ptrdiff_t m_nameToken = 0x10; // CUtlStringToken
+                constexpr std::ptrdiff_t m_nParamCount = 0x14; // int32
+                constexpr std::ptrdiff_t m_nIndex = 0x18; // FuseFunctionIndex_t
+                constexpr std::ptrdiff_t m_bIsPure = 0x1A; // bool
             }
             // Parent: None
             // Field count: 0
@@ -401,6 +434,16 @@ namespace cs2_dumper {
             // Metadata:
             // MResourceTypeForInfoType
             namespace InfoForResourceTypeCVDataResource {
+            }
+            // Parent: None
+            // Field count: 3
+            //
+            // Metadata:
+            // MGetKV3ClassDefaults
+            namespace NoiseOscillatorDef_t {
+                constexpr std::ptrdiff_t m_flPhase = 0x0; // float32
+                constexpr std::ptrdiff_t m_flFrequency = 0x4; // float32
+                constexpr std::ptrdiff_t m_flAmplitude = 0x8; // float32
             }
             // Parent: None
             // Field count: 0
@@ -417,6 +460,25 @@ namespace cs2_dumper {
             namespace InfoForResourceTypeCDOTANovelsList {
             }
             // Parent: None
+            // Field count: 12
+            //
+            // Metadata:
+            // MGetKV3ClassDefaults
+            namespace NoiseStreamDef_t {
+                constexpr std::ptrdiff_t m_nType = 0x0; // NoiseStreamType_t
+                constexpr std::ptrdiff_t m_nModifier = 0x4; // NoiseStreamModifier_t
+                constexpr std::ptrdiff_t m_nTurbulence = 0x8; // NoiseStreamTurbulence_t
+                constexpr std::ptrdiff_t m_flOutputMin = 0xC; // float32
+                constexpr std::ptrdiff_t m_flOutputMax = 0x10; // float32
+                constexpr std::ptrdiff_t m_flScale = 0x14; // float32
+                constexpr std::ptrdiff_t m_vOffsetRate = 0x18; // Vector
+                constexpr std::ptrdiff_t m_flOffset = 0x24; // float32
+                constexpr std::ptrdiff_t m_nOctaves = 0x28; // int32
+                constexpr std::ptrdiff_t m_flTurbulenceScale = 0x2C; // float32
+                constexpr std::ptrdiff_t m_flTurbulenceMix = 0x30; // float32
+                constexpr std::ptrdiff_t m_Oscillators = 0x38; // CUtlVector<NoiseOscillatorDef_t>
+            }
+            // Parent: None
             // Field count: 0
             //
             // Metadata:
@@ -426,7 +488,7 @@ namespace cs2_dumper {
             // Parent: None
             // Field count: 1
             namespace FuseVariableIndex_t {
-                constexpr std::ptrdiff_t m_Value = 0x0; // 
+                constexpr std::ptrdiff_t m_Value = 0x0; // uint16
             }
             // Parent: None
             // Field count: 0
@@ -448,8 +510,8 @@ namespace cs2_dumper {
             // Metadata:
             // MGetKV3ClassDefaults
             namespace ManifestTestResource_t {
-                constexpr std::ptrdiff_t m_name = 0x0; // 
-                constexpr std::ptrdiff_t m_child = 0x8; // 
+                constexpr std::ptrdiff_t m_name = 0x0; // CUtlString
+                constexpr std::ptrdiff_t m_child = 0x8; // CStrongHandle<InfoForResourceTypeManifestTestResource_t>
             }
             // Parent: None
             // Field count: 0

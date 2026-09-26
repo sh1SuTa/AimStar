@@ -68,16 +68,18 @@ namespace RCS
 			Angles.y = 0.f;
 		}
 	}
-
+	/*
 	inline void RecoilControl(CEntity LocalPlayer)
 	{
 		if (!MenuConfig::RCS)
 			return;
 		uintptr_t ClippingWeapon, WeaponData;
 		bool IsAuto;
+		
 		ProcessMgr.ReadMemory(LocalPlayer.Pawn.Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon);
 		ProcessMgr.ReadMemory(ClippingWeapon + Offset::WeaponBaseData.WeaponDataPTR, WeaponData);
 		ProcessMgr.ReadMemory(WeaponData + Offset::WeaponBaseData.m_bIsFullAuto, IsAuto);
+		
 		static Vec2 OldPunch;
 		if (LocalPlayer.Pawn.ShotsFired > RCSBullet && IsAuto)
 		{       
@@ -97,4 +99,5 @@ namespace RCS
 			OldPunch = Vec2{ 0,0 };
 		}
 	}
+	**/
 }

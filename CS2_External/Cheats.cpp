@@ -147,20 +147,9 @@ int BruteC, BruteD = 0;
 //运行作弊的主要逻辑
 void Cheats::Run() noexcept
 {	
-	if (yamldata.IsNull())
-	{
-		//std::ifstream fileStream(MenuConfig::path + XorStr("\\Offsets\\offsets.yaml"));
-		std::ifstream fileStream(XorStr("offsets.yaml"));
-		yamldata = YAML::Load(fileStream);
-		fileStream.close();
-	}
 	
-	/*if (MenuConfig::DEC && BruteD  >= 63)
-	{
-		cout << "快速bypass" << endl;
-		Cheats::FastBypass();
-		Debugger::Analyzer();
-	}*/
+	
+	
 	
 	static DWORD lastTick = 0; 
 	DWORD currentTick = GetTickCount();
@@ -287,8 +276,12 @@ void Cheats::Run() noexcept
 			DWORD64 EntityAddress = 0;
 			if (BruteC < 64)
 				BruteC++;
-			if (!ProcessMgr.ReadMemory<DWORD64>(gGame.GetEntityListEntry() + (i + 1) * 0x78, EntityAddress))
+			
+			if (!ProcessMgr.ReadMemory<DWORD64>(gGame.GetEntityListEntry() + (i + 1) * 0x70, EntityAddress))
+			{
+				
 				continue;
+			}
 			if (EntityAddress == LocalEntity.Controller.Address)
 			{
 				LocalPlayerControllerIndex = i;
@@ -296,7 +289,7 @@ void Cheats::Run() noexcept
 			}
 			if (!Entity.UpdateController(EntityAddress))
 				continue;
-
+			
 			MenuConfig::ValidEntity.push_back(std::make_pair(Entity, EntityAddress));
 		}
 		GUI::InitHitboxList();
@@ -307,14 +300,21 @@ void Cheats::Run() noexcept
 
 	if (!MenuConfig::ValidEntity.empty() && GameKeepOn)
 	{
+		
 		for (int index = 0; index < MenuConfig::ValidEntity.size(); index++)
 		{
 			CEntity Entity = MenuConfig::ValidEntity[index].first;
 			DWORD64 EntityAddress = MenuConfig::ValidEntity[index].second;
-			if (!Entity.UpdatePawn(Entity.Pawn.Address))
+			if (!Entity.UpdatePawn(Entity.Pawn.Address)) {
+				
 				continue;
-			if (MenuConfig::TeamCheck && Entity.Controller.TeamID == LocalEntity.Controller.TeamID)
+			}
+			std::cout << "success to update pawn for entity at index " << index << std::endl;
+			if (MenuConfig::TeamCheck && Entity.Controller.TeamID == LocalEntity.Controller.TeamID) {
+				std::cout << "pass same team: " << index << std::endl;
 				continue;
+			}
+				
 			if (!UserBruted)
 			{
 				if (Cheats::AntiTKMAC(Entity.Controller.SteamID))
@@ -327,7 +327,7 @@ void Cheats::Run() noexcept
 			}
 
 			Misc::MoneyService(Entity);
-
+			
 			if (!Entity.ESPAlive())
 				continue;
 			if (RadarCFG::ShowRadar)
@@ -403,6 +403,7 @@ void Cheats::Run() noexcept
 		}
 
 		// Aimbot
+		/*
 		if (MenuConfig::AimBot) {
 			std::thread tDrawFovCircle(Render::DrawFovCircle,LocalEntity);
 			
@@ -421,11 +422,11 @@ void Cheats::Run() noexcept
 				lastTick = currentTick;
 			}
 			tDrawFovCircle.join();
-		}
-
+		}*/
+		/*
 		if (!MenuConfig::AimBot || !AimControl::HasTarget || !(MenuConfig::AimAlways || GetAsyncKeyState(AimControl::HotKey)))
 			RCS::RecoilControl(LocalEntity);
-
+			*/
 
 
 		// Radar render

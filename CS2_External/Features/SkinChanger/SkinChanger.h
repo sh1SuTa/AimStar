@@ -74,21 +74,21 @@ namespace SkinChanger
 		return GroupMask;
 	}
 
-	inline DWORD64 GetViewModelServices(const CEntity& LocalPlayer)
-	{
-		DWORD64 ViewModelServices;
-		ProcessMgr.ReadMemory(LocalPlayer.Pawn.Address + Offset::C_CSPlayerPawnBase.m_pViewModelServices, ViewModelServices);
+	//inline DWORD64 GetViewModelServices(const CEntity& LocalPlayer)
+	//{
+	//	DWORD64 ViewModelServices;
+	//	ProcessMgr.ReadMemory(LocalPlayer.Pawn.Address + Offset::C_CSPlayerPawnBase.m_pViewModelServices, ViewModelServices);
 
-		return ViewModelServices;
-	}
+	//	return ViewModelServices;
+	//}
 
-	inline DWORD64 GetViewHandle(DWORD64 ViewModelServices)
-	{
-		DWORD64 ViewHandle;
-		ProcessMgr.ReadMemory(ViewModelServices + Offset::CCSPlayer_ViewModelServices.m_hViewModel, ViewHandle);
+	//inline DWORD64 GetViewHandle(DWORD64 ViewModelServices)
+	//{
+	//	DWORD64 ViewHandle;
+	//	ProcessMgr.ReadMemory(ViewModelServices + Offset::CCSPlayer_ViewModelServices.m_hViewModel, ViewHandle);
 
-		return ViewHandle;
-	}
+	//	return ViewHandle;
+	//}
 
 	inline void SetWeaponSkin(int weaponID, DWORD64 weapon, DWORD64 weaponGameSceneNode, int MeshGroupMask);
 	extern void Run(const CEntity& LocalPlayer, CGame Game);

@@ -1,9 +1,10 @@
 // Generated using https://github.com/a2x/cs2-dumper
-// 2025-01-24 09:20:31.282403500 UTC
+// 2026-09-26 01:32:52.676149600 UTC
 
 #pragma once
 
 #include <cstddef>
+#include <cstdint>
 
 namespace cs2_dumper {
     namespace schemas {
@@ -29,7 +30,7 @@ namespace cs2_dumper {
                 REFERENCE_PASSTHROUGH = 0xC
             };
             // Alignment: 4
-            // Member count: 16
+            // Member count: 17
             enum class EStyleNodeType : uint32_t {
                 ROOT = 0x0,
                 EXPRESSION = 0x1,
@@ -46,7 +47,8 @@ namespace cs2_dumper {
                 REFERENCE_CONTENT = 0xC,
                 REFERENCE_COMPILED = 0xD,
                 REFERENCE_PASSTHROUGH = 0xE,
-                COMPILER_CONDITIONAL = 0xF
+                REFERENCE_PANEL = 0xF,
+                COMPILER_CONDITIONAL = 0x10
             };
         }
     }

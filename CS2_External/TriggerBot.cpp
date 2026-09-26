@@ -29,8 +29,8 @@ void TriggerBot::Run(const CEntity& LocalEntity)
 	}
 	if (!ProcessMgr.ReadMemory<bool>(LocalEntity.Pawn.Address + Offset::C_CSPlayerPawn.m_bWaitForNoAttack, WaitForNoAttack))
 		return;
-	if (!ProcessMgr.ReadMemory<DWORD>(LocalEntity.Pawn.Address + Offset::C_CSPlayerPawnBase.m_iIDEntIndex, uHandle))
-		return;
+	//if (!ProcessMgr.ReadMemory<DWORD>(LocalEntity.Pawn.Address + Offset::C_CSPlayerPawnBase.m_iIDEntIndex, uHandle))
+	//	return;
 	if (uHandle == -1)
 		return;
 
@@ -85,11 +85,11 @@ void TriggerBot::Run(const CEntity& LocalEntity)
 
 void TriggerBot::TargetCheck(const CEntity& LocalEntity) noexcept
 {
-	if (!ProcessMgr.ReadMemory<DWORD>(LocalEntity.Pawn.Address + Offset::C_CSPlayerPawnBase.m_iIDEntIndex, uHandle) || uHandle == -1)
-	{
-		CrosshairsCFG::isAim = false;
-	}
-	else
+	//if (!ProcessMgr.ReadMemory<DWORD>(LocalEntity.Pawn.Address + Offset::C_CSPlayerPawnBase.m_iIDEntIndex, uHandle) || uHandle == -1)
+	//{
+	//	CrosshairsCFG::isAim = false;
+	//}
+	//else
 	{
 		ListEntry = ProcessMgr.TraceAddress(gGame.GetEntityListAddress(), { 0x8 * (uHandle >> 9) + 0x10, 0x0 });
 		if (ListEntry != 0)
@@ -108,11 +108,11 @@ void TriggerBot::TargetCheck(const CEntity& LocalEntity) noexcept
 }
 bool TriggerBot::InCrosshairCheck(const CEntity& LocalEntity, const CEntity& TargetEntity) noexcept
 {
-	if (!ProcessMgr.ReadMemory<DWORD>(LocalEntity.Pawn.Address + Offset::C_CSPlayerPawnBase.m_iIDEntIndex, uHandle) || uHandle == -1)
-	{
-		return false;
-	}
-	else
+	//if (!ProcessMgr.ReadMemory<DWORD>(LocalEntity.Pawn.Address + Offset::C_CSPlayerPawnBase.m_iIDEntIndex, uHandle) || uHandle == -1)
+	//{
+	//	return false;
+	//}
+	//else
 	{
 		ListEntry = ProcessMgr.TraceAddress(gGame.GetEntityListAddress(), { 0x8 * (uHandle >> 9) + 0x10, 0x0 });
 		if (ListEntry != 0)

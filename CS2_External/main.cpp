@@ -49,7 +49,7 @@ void RandomTitle()
 	SetConsoleTitle(title);
 }
 
-
+#ifndef USERMODE
 /* F:\LuvIstEmpty\Bimstar\x64\Release\Driver.sys (2024/8/10 1:23:29)
    起始位置(h): 00000000, 结束位置(h): 00001FFF, 长度(h): 00002000 */
 unsigned char Driver[8192] = {
@@ -873,7 +873,7 @@ static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* use
 	((string*)userp)->append((char*)contents, size * nmemb);
 	return size * nmemb;
 }
-
+#endif
 
 
 bool checkHWIDFromYAML(const string& hwid) {
@@ -958,11 +958,15 @@ void Cheat()
 	srand((unsigned)time(NULL));
 	RandomTitle();
 	UpdateSteamPath();
+#ifdef USERMODE
+
+	cout << XorStr("[WARN] 你正在使用Usermode版本，该版本可能被VAC检测。") << endl;
+#else
 	//创建驱动文件
 	createDriver();
 	kdmap(1, nullptr);
 	remove("ASDriver.sys");
-
+#endif // USERMODE
 	SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN);	//Set the text color to green  
 	cout << R"(                                                                   
     ___    _          _____ __            
@@ -1003,12 +1007,12 @@ void Cheat()
 	default:
 		break;
 	}
-	if (!Offset::UpdateOffsets())
-	{
-		SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
-		cout << XorStr("\u3010\u9519\u8bef\u3011\u57fa\u5740\u66f4\u65b0\u5931\u8d25.") << endl;
-		Exit();
-	}
+	//if (!Offset::UpdateOffsets())
+	//{
+	//	SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+	//	cout << XorStr("\u3010\u9519\u8bef\u3011\u57fa\u5740\u66f4\u65b0\u5931\u8d25.") << endl;
+	//	Exit();
+	//}
 	
 	//初始化地址
 	if (!gGame.InitAddress())
@@ -1055,7 +1059,7 @@ void Cheat()
 	cout << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 	cout << XorStr("五秒后隐藏控制台窗口...") << endl;
-	thread consoleDie(AutoHideWindow);
+	//thread consoleDie(AutoHideWindow);
 
 	try
 	{

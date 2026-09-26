@@ -218,6 +218,7 @@
     <ClInclude Include="a2x\soundsystem_dll.hpp" />
     <ClInclude Include="a2x\vphysics2_dll.hpp" />
     <ClInclude Include="a2x\worldrenderer_dll.hpp" />
+    <ClInclude Include="a2x\steamaudio_dll.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">

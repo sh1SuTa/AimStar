@@ -200,7 +200,7 @@ public:
 		}
 
 		return SUCCEED;
-			}
+	}
 #else
 	StatusCode Attach(std::string ProcessName)
 	{
@@ -219,7 +219,97 @@ public:
 
 
 
+#ifdef USERMODE
+	/// <summary>
+	/// 取消附加
+	/// </summary>
+	void Detach()
+	{
+		if (hProcess)
+			CloseHandle(hProcess);
+		hProcess = 0;
+		ProcessID = 0;
+		ModuleAddress = 0;
+		Attached = false;
+	}
 
+	/// <summary>
+	/// 判断进程是否激活状态
+	/// </summary>
+	/// <returns>是否激活状态</returns>
+	bool IsActive()
+	{
+		if (!Attached)
+			return false;
+		DWORD ExitCode{};
+		GetExitCodeProcess(hProcess, &ExitCode);
+		return ExitCode == STILL_ACTIVE;
+	}
+	/// <summary>
+	/// 读取进程内存
+	/// </summary>
+	/// <typeparam name="ReadType">读取类型</typeparam>
+	/// <param name="Address">读取地址</param>
+	/// <param name="Value">返回数据</param>
+	/// <param name="Size">读取大小</param>
+	/// <returns>是否读取成功</returns>
+	template <typename ReadType>
+	bool ReadMemory(DWORD64 Address, ReadType& Value, int Size)
+	{
+		_is_invalid(hProcess, false);
+		_is_invalid(ProcessID, false);
+
+		if (ReadProcessMemory(hProcess, reinterpret_cast<LPCVOID>(Address), &Value, Size, 0))
+			return true;
+		return false;
+	}
+
+	template <typename ReadType>
+	bool ReadMemory(DWORD64 Address, ReadType& Value)
+	{
+		_is_invalid(hProcess, false);
+		_is_invalid(ProcessID, false);
+
+		if (ReadProcessMemory(hProcess, reinterpret_cast<LPCVOID>(Address), &Value, sizeof(ReadType), 0))
+			return true;
+		return false;
+	}
+
+	/// <summary>
+	/// 写入进程内存
+	/// </summary>
+	/// <typeparam name="ReadType">写入类型</typeparam>
+	/// <param name="Address">写入地址</param>
+	/// <param name="Value">写入数据</param>
+	/// <param name="Size">写入大小</param>
+	/// <returns>是否写入成功</returns>
+	template <typename ReadType>
+	bool WriteMemory(DWORD64 Address, ReadType& Value, int Size)
+	{
+		if (MenuConfig::SafeMode)
+			return false;
+		_is_invalid(hProcess, false);
+		_is_invalid(ProcessID, false);
+
+		if (WriteProcessMemory(hProcess, reinterpret_cast<LPCVOID>(Address), &Value, Size, 0))
+			return true;
+		return false;
+	}
+
+	template <typename ReadType>
+	bool WriteMemory(DWORD64 Address, ReadType& Value)
+	{
+		if (MenuConfig::SafeMode)
+			return false;
+		_is_invalid(hProcess, false);
+		_is_invalid(ProcessID, false);
+
+		if (WriteProcessMemory(hProcess, reinterpret_cast<LPVOID>(Address), &Value, sizeof(ReadType), 0))
+			return true;
+		return false;
+	}
+
+#else
 	/// <summary>
 	/// 读取进程内存
 	/// </summary>
@@ -246,7 +336,7 @@ public:
 		driver.readsize((uintptr_t)Address, &Value, sizeof(ReadType));
 		return true;
 	}
-	
+
 	/// <summary>
 	/// 写入进程内存
 	/// </summary>
@@ -272,7 +362,7 @@ public:
 		driver.write((uintptr_t)Address, Value);
 		return true;
 	}
-
+#endif // USERMODE
 
 	//tewshi0 idea
 	std::string ReadString(DWORD64 address, size_t maxLength = 256)
@@ -324,7 +414,45 @@ public:
 		CloseHandle(hSnapshot);
 		return 0;
 	}
+#ifdef USERMODE
+	DWORD64 TraceAddress(DWORD64 BaseAddress, std::vector<DWORD> Offsets)
+	{
+		_is_invalid(hProcess, 0);
+		_is_invalid(ProcessID, 0);
+		DWORD64 Address = 0;
 
+		if (Offsets.size() == 0)
+			return BaseAddress;
+
+		if (!ReadMemory<DWORD64>(BaseAddress, Address))
+			return 0;
+
+		for (int i = 0; i < Offsets.size() - 1; i++)
+		{
+			if (!ReadMemory<DWORD64>(Address + Offsets[i], Address))
+				return 0;
+		}
+		return Address == 0 ? 0 : Address + Offsets[Offsets.size() - 1];
+	}
+
+	HMODULE GetProcessModuleHandle(std::string ModuleName)
+	{
+		MODULEENTRY32 ModuleInfoPE;
+		ModuleInfoPE.dwSize = sizeof(MODULEENTRY32);
+		HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, this->ProcessID);
+		Module32First(hSnapshot, &ModuleInfoPE);
+		USES_CONVERSION;
+		do {
+			if (strcmp(W2A(ModuleInfoPE.szModule), ModuleName.c_str()) == 0)
+			{
+				CloseHandle(hSnapshot);
+				return ModuleInfoPE.hModule;
+			}
+		} while (Module32Next(hSnapshot, &ModuleInfoPE));
+		CloseHandle(hSnapshot);
+		return 0;
+	}
+#else
 
 	DWORD64 TraceAddress(DWORD64 BaseAddress, std::vector<DWORD> Offsets)
 	{
@@ -361,7 +489,7 @@ public:
 			return (HMODULE)driver.client_address();
 		}
 	}
-
+#endif // USERMODE
 };
 
 

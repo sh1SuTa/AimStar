@@ -79,8 +79,8 @@ bool CEntity::UpdateController(const DWORD64& PlayerControllerAddress)
 		return false;
 	if (!this->Controller.GetMoney())
 		return false;
-
-	this->Pawn.Address = this->Controller.GetPlayerhPawnAddress();//this->Controller.GetPlayerPawnAddress();
+	
+	this->Pawn.Address = this->Controller.GetPlayerhPawnAddress();
 	return true;
 }
 
@@ -90,44 +90,80 @@ bool CEntity::UpdatePawn(const DWORD64& PlayerPawnAddress)
 		return false;
 	this->Pawn.Address = PlayerPawnAddress;
 
-	if (!this->Pawn.GetCameraPos())
+	if (!this->Pawn.GetCameraPos()) {
+		std::cout << "Failed to get camera position for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetPos())
+	}
+		
+	if (!this->Pawn.GetPos()) {
+		std::cout << "Failed to get position for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetViewAngle())
+	}
+	if (!this->Pawn.GetViewAngle()) {
+		std::cout << "Failed to get view angle for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetWeaponName())
+	}
+	if (!this->Pawn.GetWeaponName()) {
+		std::cout << "Failed to get weapon name for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetAimPunchAngle())
+	}
+	if (!this->Pawn.GetAimPunchAngle()) {
+		std::cout << "Failed to get aim punch angle for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetShotsFired())
+	}
+	if (!this->Pawn.GetShotsFired()) {
+		std::cout << "Failed to get shots fired for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetHealth())
+	}
+	if (!this->Pawn.GetHealth()) {
 		return false;
-	if (!this->Pawn.GetAmmo())
+	}
+	if (!this->Pawn.GetAmmo()) {
+		std::cout << "Failed to get ammo for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetMaxAmmo())
+	}
+	if (!this->Pawn.GetMaxAmmo()) {
+		std::cout << "Failed to get max ammo for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetArmor())
+	}
+	if (!this->Pawn.GetArmor()) {
+		std::cout << "Failed to get armor for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetTeamID())
+	}
+	if (!this->Pawn.GetTeamID()) {
+		std::cout << "Failed to get team ID for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetFov())
+	}
+	if (!this->Pawn.GetFov()) {
 		return false;
-	if (!this->Pawn.GetSpotted())
+	}
+	if (!this->Pawn.GetSpotted()) {
+		std::cout << "Failed to get spotted status for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetFFlags())
+	}
+	if (!this->Pawn.GetFFlags()) {
+		std::cout << "Failed to get FFlags for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetDefusing())
+	}
+	if (!this->Pawn.GetDefusing()) {
+		std::cout << "Failed to get defusing status for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetFlashDuration())
+	}
+	if (!this->Pawn.GetFlashDuration()) {
+		std::cout << "Failed to get flash duration for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetVelocity())
+	}
+	if (!this->Pawn.GetVelocity()) {
+		std::cout << "Failed to get velocity for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.GetAimPunchCache())
+	}
+	if (!this->Pawn.GetAimPunchCache()) {
+		std::cout << "Failed to get aim punch cache for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
-	if (!this->Pawn.BoneData.UpdateAllBoneData(PlayerPawnAddress))
-		return false;
+	}
+	//if (!this->Pawn.BoneData.UpdateAllBoneData(PlayerPawnAddress)) {
+	//	return false;
+	//}
 
 	return true;
 }
@@ -207,12 +243,14 @@ bool PlayerController::GetPlayerSteamID()
 }
 bool PlayerPawn::GetViewAngle()
 {
-	return GetDataAddressWithOffset<Vec2>(Address, Offset::C_CSPlayerPawnBase.m_angEyeAngles, this->ViewAngle);
+	return GetDataAddressWithOffset<Vec2>(Address, cs2_dumper::schemas::client_dll::C_CSPlayerPawn::m_angEyeAngles, this->ViewAngle);
 }
 
 bool PlayerPawn::GetCameraPos()
 {
-	return GetDataAddressWithOffset<Vec3>(Address, Offset::C_CSPlayerPawnBase.m_vecLastClipCameraPos, this->CameraPos);
+	//return GetDataAddressWithOffset<Vec3>(Address, Offset::C_CSPlayerPawnBase.m_vecLastClipCameraPos, this->CameraPos);
+	return GetDataAddressWithOffset<Vec3>(Address, cs2_dumper::schemas::client_dll::C_BasePlayerPawn::m_vecLastCameraSetupLocalOrigin, this->CameraPos);
+	
 }
 
 bool PlayerPawn::GetSpotted()
@@ -250,7 +288,8 @@ bool PlayerPawn::GetShotsFired()
 
 bool PlayerPawn::GetAimPunchAngle()
 {
-	return GetDataAddressWithOffset<Vec2>(Address, Offset::C_CSPlayerPawn.m_aimPunchAngle, this->AimPunchAngle);
+	 //return GetDataAddressWithOffset<Vec2>(Address, Offset::C_CSPlayerPawn.m_aimPunchAngle, this->AimPunchAngle);
+	 return true;
 }
 
 bool PlayerPawn::GetTeamID()
@@ -260,7 +299,8 @@ bool PlayerPawn::GetTeamID()
 
 bool PlayerPawn::GetAimPunchCache()
 {
-	return GetDataAddressWithOffset<C_UTL_VECTOR>(Address, Offset::C_CSPlayerPawn.m_aimPunchCache, this->AimPunchCache);
+	 //return GetDataAddressWithOffset<C_UTL_VECTOR>(Address, Offset::C_CSPlayerPawn.m_aimPunchCache, this->AimPunchCache);
+	 return true;
 }
 
 DWORD64 PlayerController::GetPlayerPawnAddress()
@@ -298,7 +338,7 @@ DWORD64 PlayerController::GetPlayerhPawnAddress()
 	if (!ProcessMgr.ReadMemory<DWORD64>(EntityPawnListEntry + 0x10 + 8 * ((Pawn & 0x7FFF) >> 9), EntityPawnListEntry))
 		return 0;
 
-	if (!ProcessMgr.ReadMemory<DWORD64>(EntityPawnListEntry + 0x78 * (Pawn & 0x1FF), EntityPawnAddress))
+	if (!ProcessMgr.ReadMemory<DWORD64>(EntityPawnListEntry + 0x70 * (Pawn & 0x1FF), EntityPawnAddress))
 		return 0;
 
 	return EntityPawnAddress;
@@ -331,29 +371,32 @@ bool PlayerPawn::GetArmor()
 bool PlayerPawn::GetAmmo()
 {
 	DWORD64 ClippingWeapon = 0;
-	if (!ProcessMgr.ReadMemory<DWORD64>(Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon))
-		return false;
+	//if (!ProcessMgr.ReadMemory<DWORD64>(Address + Offset::C_CSPlayerPawnBase.m_bKeepLoadedAmmo, ClippingWeapon))
+		return true;
 
-	return GetDataAddressWithOffset<int>(ClippingWeapon, Offset::WeaponBaseData.Clip1, this->Ammo);
+	
 }
 bool PlayerPawn::GetBullet()
 {
 	DWORD64 ClippingWeapon = 0;
-	if (!ProcessMgr.ReadMemory<DWORD64>(Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon))
-		return false;
+	//if (!ProcessMgr.ReadMemory<DWORD64>(Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon))
+	//	return false;
 
-	return GetDataAddressWithOffset<int>(ClippingWeapon, Offset::WeaponBaseData.Clip1, this->Bullet);
+	//return GetDataAddressWithOffset<int>(ClippingWeapon, Offset::WeaponBaseData.Clip1, this->Bullet);
+	return true;
 }
 bool PlayerPawn::GetMaxAmmo()
 {
+
 	DWORD64 ClippingWeapon = 0;
 	DWORD64 WeaponData = 0;
-	if (!ProcessMgr.ReadMemory<DWORD64>(Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon))
-		return false;
-	if (!ProcessMgr.ReadMemory<DWORD64>(ClippingWeapon + Offset::WeaponBaseData.WeaponDataPTR, WeaponData))
-		return false;
+	//if (!ProcessMgr.ReadMemory<DWORD64>(Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon))
+	//	return false;
+	//if (!ProcessMgr.ReadMemory<DWORD64>(ClippingWeapon + Offset::WeaponBaseData.WeaponDataPTR, WeaponData))
+	//	return false;
 
-	return GetDataAddressWithOffset<int>(WeaponData, Offset::WeaponBaseData.MaxClip, this->MaxAmmo);
+	//return GetDataAddressWithOffset<int>(WeaponData, Offset::WeaponBaseData.MaxClip, this->MaxAmmo);
+	return true;
 }
 
 bool PlayerPawn::GetFov()

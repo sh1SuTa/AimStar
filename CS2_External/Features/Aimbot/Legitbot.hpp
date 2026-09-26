@@ -42,16 +42,15 @@ namespace AimControl
     {
         MenuConfig::AimAlways = !MenuConfig::AimAlways;
     }
-
+    /*
     inline void AimBot(const CEntity& Local, Vec3 LocalPos, std::vector<Vec3>& AimPosList)
     {
         if (MenuConfig::ShowMenu)
             return;
 
-        //int isFired;
-        //ProcessMgr.ReadMemory(Local.Pawn.Address + Offset::Pawn.iShotsFired, isFired);
-        //if (!isFired && !AimLock)
-        // When players hold these weapons, don't aim
+        int isFired;
+        ProcessMgr.ReadMemory(Local.Pawn.Address + Offset::Pawn.iShotsFired, isFired);
+        if (!isFired && !AimLock)
         std::vector<std::string> WeaponNames = {
         XorStr("smokegrenade"), XorStr("flashbang"), XorStr("hegrenade"), XorStr("molotov"), XorStr("decoy"), XorStr("incgrenade"),
         XorStr("ct_knife"), XorStr("t_knife"),XorStr("c4")
@@ -105,7 +104,7 @@ namespace AimControl
 
         uintptr_t ClippingWeapon, WeaponData;
         bool IsAuto;
-        ProcessMgr.ReadMemory(Local.Pawn.Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon);
+        //ProcessMgr.ReadMemory(Local.Pawn.Address + Offset::C_CSPlayerPawnBase.m_pClippingWeapon, ClippingWeapon);
         ProcessMgr.ReadMemory(ClippingWeapon + Offset::WeaponBaseData.WeaponDataPTR, WeaponData);
         ProcessMgr.ReadMemory(WeaponData + Offset::WeaponBaseData.m_bIsFullAuto, IsAuto);
 
@@ -221,4 +220,5 @@ namespace AimControl
         else
             HasTarget = false;
     }
+    */
 }

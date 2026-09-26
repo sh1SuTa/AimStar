@@ -14,7 +14,7 @@ void Glow::Run(const CEntity& Entity)
 
 	if (!MiscCFG::EnemySensor)
 		return;
-
+	std::cout << "Applying glow effect to entity at address: " << std::hex << Entity.Pawn.Address << std::dec << std::endl;
 	ProcessMgr.WriteMemory(Entity.Pawn.Address + Offset::C_BaseModelEntity.GlowFunction, on);
 	ProcessMgr.WriteMemory(Entity.Pawn.Address + Offset::C_BaseModelEntity.GlowColorOverride, color);
 

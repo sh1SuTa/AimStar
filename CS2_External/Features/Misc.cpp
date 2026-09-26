@@ -335,6 +335,7 @@ namespace Misc
 	}
 
 	std::string OldWeaponCache;
+	
 	void ForceScope(const CEntity& aLocalPlayer) noexcept
 	{
 		if (!MiscCFG::ForceScope)
@@ -386,7 +387,7 @@ namespace Misc
 		}
 			
 	}
-
+	
 	// @Phillip
 	void NightMode() noexcept
 	{

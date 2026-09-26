@@ -20,7 +20,7 @@ private:
 		DWORD64 EntityList;
 		DWORD64 Matrix;
 		DWORD64 ViewAngle;
-		DWORD64 EntityListEntry;
+		DWORD64 EntityListEntry;//entity_list + 0x10，第一个块
 		DWORD64 LocalController;
 		DWORD64 LocalPawn;
 		DWORD64 ServerPawn;

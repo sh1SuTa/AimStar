@@ -92,7 +92,7 @@ namespace ESP
 
 		return Rect;
 	}
-
+	/*
 	const char* RenderWeaponIcon(const CEntity& Entity)
 	{
 		uintptr_t ClippingWeapon, WeaponData, WeaponNameAddress;
@@ -111,7 +111,7 @@ namespace ESP
 		std::string weaponIcon = GunIcon(weaponName);
 		return weaponIcon.c_str();
 	}
-
+	*/
 	void RenderPlayerESP(const CEntity& LocalEntity, const CEntity& Entity, ImVec4 Rect, int LocalPlayerControllerIndex, int Index)
 	{
 		std::string weaponIcon = GunIcon(Entity.Pawn.WeaponName);

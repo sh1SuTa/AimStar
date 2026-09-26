@@ -64,7 +64,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Ring0|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <VCToolsVersion>
@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Ring3|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <VCToolsVersion />
@@ -208,7 +208,7 @@
       <RemoveUnreferencedCodeData>false</RemoveUnreferencedCodeData>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalOptions>/source-charset:utf-8 /Zc:char8_t-</AdditionalOptions>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
       <IntelJCCErratum>true</IntelJCCErratum>
       <CallingConvention>Cdecl</CallingConvention>
       <AdditionalIncludeDirectories>
@@ -234,7 +234,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>USERMODE;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CONSOLE;%(PreprocessorDefinitions);IMGUI_DEFINE_MATH_OPERATORS;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -279,6 +279,7 @@
     <ClInclude Include="a2x\schemasystem_dll.hpp" />
     <ClInclude Include="a2x\server_dll.hpp" />
     <ClInclude Include="a2x\soundsystem_dll.hpp" />
+    <ClInclude Include="a2x\steamaudio_dll.hpp" />
     <ClInclude Include="a2x\vphysics2_dll.hpp" />
     <ClInclude Include="a2x\worldrenderer_dll.hpp" />
     <ClInclude Include="Features\Aimbot\Ragebot.hpp" />
