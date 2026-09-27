@@ -112,9 +112,9 @@ namespace ESP
 		std::string weaponIcon = GunIcon(Entity.Pawn.WeaponName);
 		
 		Render::DrawBone(Entity, ESPConfig::BoneColor, 1.3f);
-		//Render::ShowPenis(Entity, ESPConfig::PenisLength, ESPConfig::PenisColor, ESPConfig::PenisSize);
+		Render::ShowPenis(Entity, ESPConfig::PenisLength, ESPConfig::PenisColor, ESPConfig::PenisSize);
 		Render::ShowLosLine(Entity, 50.0f, ESPConfig::EyeRayColor, 1.3f);
-		//Render::DrawHeadbox(Entity, ESPConfig::HeadBoxColor);
+		Render::DrawHeadbox(Entity, ESPConfig::HeadBoxColor);
 
 		// box
 		if (ESPConfig::FilledBox) {

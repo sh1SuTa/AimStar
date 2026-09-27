@@ -20,12 +20,12 @@ enum BONEINDEX : DWORD
 	arm_upper_R=13,
 	arm_lower_R=14,
 	hand_R=15,
-	leg_upper_L=16,
-	leg_lower_L=17,
-	ankle_L=18,
-	leg_upper_R=19,
-	leg_lower_R=20,
-	ankle_R=21,
+	leg_upper_L=17,
+	leg_lower_L=18,
+	ankle_L=19,
+	leg_upper_R=20,
+	leg_lower_R=21,
+	ankle_R=22,
 };
 
 struct BoneJointData
@@ -54,9 +54,9 @@ public:
 
 namespace BoneJointList
 {
-	// ¼¹¹Ç
+	// 脖子->脊椎->盆骨
 	inline std::list<DWORD> Trunk = { neck_0,spine_2, pelvis};
-	// ×ó±Û
+	
 	inline std::list<DWORD> LeftArm = { neck_0,  arm_upper_L, arm_lower_L, hand_L };
 	// ÓÒ±Û
 	inline std::list<DWORD> RightArm = { neck_0, arm_upper_R,arm_lower_R, hand_R };

@@ -289,7 +289,6 @@ namespace Render
 		Gui.Line(StartPoint, EndPoint, Color, Thickness);
 	}
 
-	//ţţ����
 	void ShowPenis(const CEntity& Entity, const float Length, ImColor Color, float Thickness)
 	{
 		if (!ESPConfig::ShowPenis)
