@@ -1059,7 +1059,7 @@ void Cheat()
 	cout << endl;
 	SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
 	cout << XorStr("五秒后隐藏控制台窗口...") << endl;
-	//thread consoleDie(AutoHideWindow);
+	thread consoleDie(AutoHideWindow);
 
 	try
 	{

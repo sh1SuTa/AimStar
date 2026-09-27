@@ -309,9 +309,7 @@ void Cheats::Run() noexcept
 				
 				continue;
 			}
-			std::cout << "success to update pawn for entity at index " << index << std::endl;
 			if (MenuConfig::TeamCheck && Entity.Controller.TeamID == LocalEntity.Controller.TeamID) {
-				std::cout << "pass same team: " << index << std::endl;
 				continue;
 			}
 				

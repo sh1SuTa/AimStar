@@ -80,12 +80,7 @@ namespace ESP
 		case 2:
 			Rect = Render::Get2DBox(Entity);
 			break;
-		case 3:
-			Rect = Render::Get2DBox(Entity);
-			break;
-		case 4:
-			Rect = Render::Get2DBoneRect(Entity);
-			break;
+		
 		default:
 			break;
 		}

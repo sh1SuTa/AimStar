@@ -117,7 +117,7 @@ public:
 			object.SecurityDescriptor = SecurityDescriptor;
 			object.ObjectName = ObjectName;
 			return object;
-			};
+		};
 
 		FUNC_RtlAdjustPrivilege f_RtlAdjustPrivilege = (FUNC_RtlAdjustPrivilege)GetProcAddress(GetModuleHandleA("ntdll"), "RtlAdjustPrivilege");
 		FUNC_NtDuplicateObject f_NtDuplicateObject = (FUNC_NtDuplicateObject)GetProcAddress(GetModuleHandleA("ntdll"), "NtDuplicateObject");
@@ -162,10 +162,7 @@ public:
 		}
 
 		for (int i = 0; i < t_SYSTEM_HANDLE_INFORMATION->HandleCount; ++i) {
-			static int n = i;
-			if (n > 100) {
-				return FAILE_HPROCESS;
-			}
+			
 
 			if (t_SYSTEM_HANDLE_INFORMATION->Handles[i].ObjectTypeNumber != 0x7)
 				continue;
