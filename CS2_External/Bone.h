@@ -3,25 +3,29 @@
 #include "Game.h"
 #include <list>
 
+// animgraph_2_beta update (2026-04): root_motion bone inserted at index 0,
+// all old indices shifted by +1, weapon bones now occupy 22-27
 enum BONEINDEX : DWORD
 {
-	head=6,
-	neck_0=5,
-	spine_1=4,
-	spine_2=2,
-	pelvis=0,
-	arm_upper_L=8,
-	arm_lower_L=9,
-	hand_L=10,
+	head=7,
+	neck_0=6,
+	spine_1=3,
+	spine_2=4,
+	pelvis=1,
+	clavicle_L=8,
+	arm_upper_L=9,
+	arm_lower_L=10,
+	hand_L=11,
+	clavicle_R=12,
 	arm_upper_R=13,
 	arm_lower_R=14,
 	hand_R=15,
-	leg_upper_L=22,
-	leg_lower_L=23,
-	ankle_L=24,
-	leg_upper_R=25,
-	leg_lower_R=26,
-	ankle_R=27,
+	leg_upper_L=16,
+	leg_lower_L=17,
+	ankle_L=18,
+	leg_upper_R=19,
+	leg_lower_R=20,
+	ankle_R=21,
 };
 
 struct BoneJointData

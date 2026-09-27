@@ -316,17 +316,28 @@ namespace Render
 	ImVec4 Get2DBoneRect(const CEntity& Entity)
 	{
 		Vec2 Min, Max, Size;
-		Min = Max = Entity.GetBone().BonePosList[0].ScreenPos;
+		// Seed from the first visible joint; entry 0 is root_motion (at feet) in the new rig
+		bool HasValidJoint = false;
 
 		for (auto &BoneJoint : Entity.GetBone().BonePosList)
 		{
 			if (!BoneJoint.IsVisible)
 				continue;
+			if (!HasValidJoint)
+			{
+				Min = Max = BoneJoint.ScreenPos;
+				HasValidJoint = true;
+				continue;
+			}
 			Min.x = min(BoneJoint.ScreenPos.x, Min.x);
 			Min.y = min(BoneJoint.ScreenPos.y, Min.y);
 			Max.x = max(BoneJoint.ScreenPos.x, Max.x);
 			Max.y = max(BoneJoint.ScreenPos.y, Max.y);
 		}
+
+		if (!HasValidJoint)
+			return ImVec4(Entity.GetBone().BonePosList[0].ScreenPos.x, Entity.GetBone().BonePosList[0].ScreenPos.y, 0.f, 0.f);
+
 		Size.x = Max.x - Min.x;
 		Size.y = Max.y - Min.y;
 
