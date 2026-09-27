@@ -110,8 +110,8 @@ namespace ESP
 	void RenderPlayerESP(const CEntity& LocalEntity, const CEntity& Entity, ImVec4 Rect, int LocalPlayerControllerIndex, int Index)
 	{
 		std::string weaponIcon = GunIcon(Entity.Pawn.WeaponName);
-
-		//Render::DrawBone(Entity, ESPConfig::BoneColor, 1.3f);
+		
+		Render::DrawBone(Entity, ESPConfig::BoneColor, 1.3f);
 		//Render::ShowPenis(Entity, ESPConfig::PenisLength, ESPConfig::PenisColor, ESPConfig::PenisSize);
 		//Render::ShowLosLine(Entity, 50.0f, ESPConfig::EyeRayColor, 1.3f);
 		//Render::DrawHeadbox(Entity, ESPConfig::HeadBoxColor);

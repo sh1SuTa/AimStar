@@ -239,6 +239,7 @@ namespace Render
 
 	void DrawBone(const CEntity& Entity, ImColor Color, float Thickness)
 	{
+
 		if (!ESPConfig::ShowBoneESP)
 			return;
 
@@ -313,7 +314,6 @@ namespace Render
 		Gui.Line(StartPoint, EndPoint, Color, Thickness);
 	}
 
-	// 2D���������
 	ImVec4 Get2DBoneRect(const CEntity& Entity)
 	{
 		Vec2 Min, Max, Size;

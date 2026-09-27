@@ -158,12 +158,11 @@ bool CEntity::UpdatePawn(const DWORD64& PlayerPawnAddress)
 		return false;
 	}
 	if (!this->Pawn.GetAimPunchCache()) {
-		std::cout << "Failed to get aim punch cache for pawn at address: " << std::hex << PlayerPawnAddress << std::endl;
 		return false;
 	}
-	//if (!this->Pawn.BoneData.UpdateAllBoneData(PlayerPawnAddress)) {
-	//	return false;
-	//}
+	if (!this->Pawn.BoneData.UpdateAllBoneData(PlayerPawnAddress)) {
+		return false;
+	}
 
 	return true;
 }
