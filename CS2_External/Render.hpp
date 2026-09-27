@@ -266,7 +266,6 @@ namespace Render
 		}
 	}
 
-	// �������
 	void ShowLosLine(const CEntity& Entity, const float Length, ImColor Color, float Thickness)
 	{
 		if (!ESPConfig::ShowEyeRay)

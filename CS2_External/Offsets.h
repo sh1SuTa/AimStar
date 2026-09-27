@@ -205,7 +205,8 @@ namespace Offset
 	
 	struct 
 	{
-		DWORD BoneArray = 0x1F0; // NO NO NO... Just a hard coding. // cs2_dumper::schemas::client_dll::CSkeletonInstance::m_modelState + cs2_dumper::schemas::client_dll::CGameSceneNode::m_vecOrigin;//cs2_dumper::schemas::client_dll::CGameSceneNode::m_vecOrigin;				// CSkeletonInstance_::m_modelState + CGameSceneNode_::m_vecOrigin
+		
+		DWORD BoneArray = 0x140 + 0x80;
 	} Pawn;
 	
 	bool UpdateOffsets();
